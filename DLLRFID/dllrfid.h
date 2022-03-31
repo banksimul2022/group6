@@ -9,8 +9,13 @@ public:
     DLLRFID();
     void printSerial();
     QString stringSerial;
+    int USB;
+    void USBCheck();
+    void Alustus();
+    ~DLLRFID();
 private:
     QSerialPort *objectSerialPort;
+    QIODevice *objectIODevice;
 
 };
 
