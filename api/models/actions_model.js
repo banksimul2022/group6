@@ -1,6 +1,18 @@
 const db = require('../database');
 
 const action = {
+
+  
+  getFiveActions: function(id, callback) {
+    return db.query('SELECT * FROM account_action JOIN client ON client.id_client = account_action.id_client WHERE client.id_client = ? ORDER BY action_time DESC limit 5;',
+     [id], callback);
+  },
+
+  getBalance: function(id, callback) {
+    return db.query('SELECT * FROM bank_account JOIN client_has_bank_account ON client_has_bank_account.id_bank_account = bank_account.id_bank_account JOIN client ON client.id_client = client_has_bank_account.id_client WHERE client.id_client=?',
+     [id], callback);
+  },
+
   getById: function(id, callback) {
     return db.query('select * from account_action where id_account_action=?', [id], callback);
   },

@@ -24,6 +24,32 @@ router.get('/:id?',
 });
 
 
+router.get('/FiveActions/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getFiveActions(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+router.get('/balance/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getBalance(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
 router.post('/', 
 function(request, response) {
   action.add(request.body, function(err, dbResult) {
