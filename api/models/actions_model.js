@@ -2,7 +2,19 @@ const db = require('../database');
 
 const action = {
 
-  
+  withdrawal: function(parameters, callback) {
+    return db.query('CALL credit_withdrawal(?,?)', 
+    [parameters.id, parameters.amount], callback);
+  },
+
+
+  getTenActions: function(id, callback) {
+    return db.query('SELECT * FROM account_action JOIN client ON client.id_client = account_action.id_client WHERE client.id_client = ? ORDER BY action_time DESC limit 10;',
+     [id], callback);
+  },
+
+
+
   getFiveActions: function(id, callback) {
     return db.query('SELECT * FROM account_action JOIN client ON client.id_client = account_action.id_client WHERE client.id_client = ? ORDER BY action_time DESC limit 5;',
      [id], callback);

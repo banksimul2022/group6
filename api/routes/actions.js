@@ -23,6 +23,30 @@ router.get('/:id?',
   }
 });
 
+router.post('/withdrawal', 
+function(request, response) {
+  action.withdrawal(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+    }
+  });
+});
+
+router.get('/TenActions/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getTenActions(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
 
 router.get('/FiveActions/:id?',
  function(request, response) {
