@@ -1,7 +1,9 @@
 QT -= gui
-QT += serialport
+QT += widgets \
+    serialport
+
 TEMPLATE = lib
-DEFINES += DLLRFID_LIBRARY
+DEFINES += RFID_LIBRARY
 
 CONFIG += c++11
 
@@ -10,14 +12,19 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dllrfid.cpp
+    rfid.cpp \
+    rfid_ui.cpp
 
 HEADERS += \
-    DLLRFID_global.h \
-    dllrfid.h
+    RFID_global.h \
+    rfid.h \
+    rfid_ui.h
 
 # Default rules for deployment.
 unix {
     target.path = /usr/lib
 }
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    rfid_ui.ui
