@@ -47,6 +47,17 @@ router.get('/TenActions/:id?',
   } 
 });
 
+router.post('/Prev10Actions', 
+function(request, response) {
+  action.withdrawal(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+    }
+  });
+});
+
 
 router.get('/FiveActions/:id?',
  function(request, response) {

@@ -1,4 +1,5 @@
 const db = require('../database');
+const { param } = require('../routes/actions');
 
 const action = {
 
@@ -13,11 +14,17 @@ const action = {
      [id], callback);
   },
 
-
+  
 
   getFiveActions: function(id, callback) {
     return db.query('SELECT * FROM account_action JOIN client ON client.id_client = account_action.id_client WHERE client.id_client = ? ORDER BY action_time DESC limit 5;',
      [id], callback);
+  },
+
+
+  Prev10Actions: function(parameters, callback) {
+    return db.query('CALL previous10actions(?,?)', 
+    [parameters.arvo, parameters.id], callback);
   },
 
   getBalance: function(id, callback) {
