@@ -1,17 +1,35 @@
 #ifndef DLLPINCODE_H
 #define DLLPINCODE_H
+
+#include "DLL-pincode_global.h"
+#include <QObject>
 #include <QDebug>
 #include "pincode.h"
 
-#include "DLL-pincode_global.h"
-
-class DLLPINCODE_EXPORT DLLpincode
+class DLLPINCODE_EXPORT DLLpincode : public QObject
 {
+    Q_OBJECT
+
 public:
-    DLLpincode();
-    void NaytaPinkoodi();
+    DLLpincode(QObject *parent = nullptr);
+    ~DLLpincode();
+
+    void showPincodeUI();
+    void getPincode();
+    QString pincode;
+
+public slots:
+    void pincodeSlot();
+
+signals:
+    void signalPincode(QString);
+
 private:
-   Pincode *objectpincode;
+   Pincode *objPincode;
+
+
+
+
 };
 
 #endif // DLLPINCODE_H
