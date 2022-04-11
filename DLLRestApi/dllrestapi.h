@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QObject>
 #include <QString>
+#include <QDebug>
 
 class DLLRESTAPI_EXPORT DLLRestApi : public QObject
 {
@@ -20,7 +21,10 @@ public:
     void getAction(QString);
     void withdrawal(QString, QString);
     void getTenActions(QString);
+    void clientIDfromCard(QString);
+    QString returnResponseData();
 
+    void setListBalance(QString); //turha?
 
     QNetworkAccessManager *getWithdrawalManager() const;
     void setWithdrawalManager(QNetworkAccessManager *newWithdrawalManager);
@@ -34,7 +38,14 @@ signals:
     void fiveActionsToExe(QString);
 
     void sendWithdrawalSignal();
+    void nameToExe(QString);
 
+    void withdrawalReady();
+
+    void clientIDsignaltoExe(QString);
+
+    void loginSignal();
+    void loginFailed();
 
 
 private slots:
@@ -45,10 +56,10 @@ private slots:
 
     void getActionSlot(QNetworkReply *reply);
 
-
     void receiveActionSignal(QString);
-
     void withdrawalSlot(QNetworkReply *reply);
+
+    void clientIDfromCardSlot(QNetworkReply *reply);
 
 
 
@@ -57,6 +68,8 @@ private:
     QNetworkAccessManager *getBalanceManager;
     QNetworkAccessManager *getActionManager;
     QNetworkAccessManager *withdrawalManager;
+    QNetworkAccessManager *clientIDfromCardManager;
+
 
 
     QNetworkReply *reply;
