@@ -34,6 +34,21 @@ function(request, response) {
   });
 });
 
+
+router.get('/clientIDfromCard/:card?',
+ function(request, response) {
+  if (request.params.card) {
+    action.clientIDfromCard(request.params.card, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+
 router.get('/TenActions/:id?',
  function(request, response) {
   if (request.params.id) {

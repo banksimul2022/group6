@@ -8,6 +8,11 @@ const action = {
     [parameters.id, parameters.amount], callback);
   },
 
+  
+  clientIDfromCard: function(card, callback) {
+    return db.query('SELECT id_client FROM card WHERE cardnumber = ?;',
+     [card], callback);
+  },
 
   getTenActions: function(id, callback) {
     return db.query('SELECT * FROM account_action JOIN client ON client.id_client = account_action.id_client WHERE client.id_client = ? ORDER BY action_time DESC limit 10;',
