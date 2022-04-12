@@ -64,11 +64,11 @@ router.get('/TenActions/:id?',
 
 router.post('/Prev10Actions', 
 function(request, response) {
-  action.withdrawal(request.body, function(err, dbResult) {
+  action.Prev10Actions(request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
-      response.json(request.body);
+      response.json(dbResult[0]);
     }
   });
 });

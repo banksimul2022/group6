@@ -372,6 +372,7 @@ debug/moc_dllrestapi.cpp: ../dllrestapi.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qudpsocket.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument \
+		C:/Qt/5.15.2/mingw81_32/include/QtCore/QDebug \
 		debug/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_32/bin/moc.exe
 	C:\Qt\5.15.2\mingw81_32\bin\moc.exe $(DEFINES) --include E:/work/TestQt/DLLRestApi/build/debug/moc_predefs.h -IC:/Qt/5.15.2/mingw81_32/mkspecs/win32-g++ -IE:/work/TestQt/DLLRestApi -IC:/Qt/5.15.2/mingw81_32/include -IC:/Qt/5.15.2/mingw81_32/include/QtNetwork -IC:/Qt/5.15.2/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\dllrestapi.h -o debug\moc_dllrestapi.cpp
@@ -657,7 +658,8 @@ debug/dllrestapi.o: ../dllrestapi.cpp ../dllrestapi.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qsslkey.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qudpsocket.h \
 		C:/Qt/5.15.2/mingw81_32/include/QtNetwork/qtnetworkversion.h \
-		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument
+		C:/Qt/5.15.2/mingw81_32/include/QtCore/QJsonDocument \
+		C:/Qt/5.15.2/mingw81_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\dllrestapi.o ..\dllrestapi.cpp
 
 debug/moc_dllrestapi.o: debug/moc_dllrestapi.cpp 

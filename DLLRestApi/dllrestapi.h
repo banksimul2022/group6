@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QObject>
 #include <QString>
+#include <QDebug>
 
 class DLLRESTAPI_EXPORT DLLRestApi : public QObject
 {
@@ -20,38 +21,29 @@ public:
     void getAction(QString);
     void withdrawal(QString, QString);
     void getTenActions(QString);
-
-
-    void setListBalance(QString);
-
-    QNetworkAccessManager *getWithdrawalManager() const;
-    void setWithdrawalManager(QNetworkAccessManager *newWithdrawalManager);
+    void clientIDfromCard(QString);
+    void browseActions(QString arvo, QString id);
+    QString returnResponseData();
 
 signals:
-    //void loginSignal();
     void balanceSignal(QString);
-    void balanceToExe(QString);
-
     void actionSignal(QString);
-    void fiveActionsToExe(QString);
-
+    void browseActions(QString);
     void sendWithdrawalSignal();
     void nameToExe(QString);
+    void withdrawalReady();
+    void clientIDsignaltoExe(QString);
+    void loginSignal(QString);
 
 
 
 private slots:
     void loginSlot (QNetworkReply *reply);
-
     void getBalanceSlot (QNetworkReply *reply);
-    void receiveBalanceSignal(QString);
-
     void getActionSlot(QNetworkReply *reply);
-
-
-    void receiveActionSignal(QString);
-
     void withdrawalSlot(QNetworkReply *reply);
+    void clientIDfromCardSlot(QNetworkReply *reply);
+    void browseActionsSlot(QNetworkReply *reply);
 
 
 
@@ -60,8 +52,8 @@ private:
     QNetworkAccessManager *getBalanceManager;
     QNetworkAccessManager *getActionManager;
     QNetworkAccessManager *withdrawalManager;
-
-
+    QNetworkAccessManager *clientIDfromCardManager;
+    QNetworkAccessManager *prev10actionsManager;
     QNetworkReply *reply;
     QByteArray response_data;
 
