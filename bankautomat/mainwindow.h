@@ -1,8 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
 #include "drawmoney.h"
+#include "dllrestapi.h"
+#include <QTimer>
+#include "dllpincode.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -30,8 +32,34 @@ private slots:
 
     void on_close_clicked();
 
+    void buttonClicked();
+
+    void on_BTN_pincode_clicked();
+
+public slots:
+    void recvBalance(double b);
+    void recvBalanceDLL(QString);
+    void RecvActions(QString);
+    void RecvName(QString);
+    void backToSignin();
+    void aloitaTaika();
+
+
+
+
 private:
     Ui::MainWindow *ui;
     drawMoney * pdrawMoney;
+    double Balance;
+    DLLRestApi *OBJrestApi;
+    QString DLLbalance;
+    drawMoney * OBJdrawMoney;
+    QString Actions;
+    QString Name;
+    QString OwnerID;
+    QTimer *timer;
+    DLLpincode *objpincode;
+
+
 };
 #endif // MAINWINDOW_H

@@ -1,8 +1,12 @@
 #ifndef DRAWMONEY_H
 #define DRAWMONEY_H
-
 #include <QDialog>
 #include "customamount.h"
+#include "dllrestapi.h"
+#include "mainwindow.h"
+#include <QObject>
+#include <QTimer>
+
 
 class MainWindow;
 
@@ -14,10 +18,13 @@ class drawMoney : public QDialog
 {
     Q_OBJECT
 
+
 public:
     explicit drawMoney(QWidget *parent = nullptr);
     ~drawMoney();
-   QString * perkele = &stringAmount;
+    QString Customdraw;
+    QTimer *timer;
+
 
 
 private slots:
@@ -39,13 +46,34 @@ private slots:
 
     void on_BTN_500_clicked();
 
+    void buttonClicked();
+public slots:
+    void recvValue(QString t);
+    void recBalanceDLL(QString);
+    void backToMain();
+    void aloitaAika();
+
+signals:
+    void sendBalance(double);
+    void balanceDrawmoney(QString);
+    void startTimer();
+    void startAjastin();
+
+
 private:
     Ui::drawMoney *ui;
     customamount * pcustomamount;
-    double balance = 1000;
-    double numberAmount;
-    double doublestrAmount;
+    MainWindow *Clicked;
     QString stringAmount;
+    DLLRestApi *OBJJrestApi;
+    QString DLLbalance;
+    double DoubleDLLBalance;
+    double DoubleDLLStringAmount;
+    double doubleDLLt;
+    QString SignaltoDraw;
+    QString OwnerID;
+
+
 
 };
 

@@ -13,11 +13,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -27,7 +27,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QLineEdit *lineEdit;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *AccActions;
@@ -43,6 +42,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QLabel *owner;
+    QTextEdit *textEdit;
+    QPushButton *BTN_pincode;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -53,12 +54,9 @@ public:
         MainWindow->resize(1017, 764);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(320, 200, 531, 301));
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(100, 350, 160, 155));
+        verticalLayoutWidget->setGeometry(QRect(100, 350, 160, 181));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -105,7 +103,7 @@ public:
 
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(100, 199, 160, 51));
+        horizontalLayoutWidget->setGeometry(QRect(100, 199, 223, 51));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -119,6 +117,15 @@ public:
 
         horizontalLayout->addWidget(owner);
 
+        textEdit = new QTextEdit(centralwidget);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(320, 200, 431, 331));
+        QFont font;
+        font.setPointSize(14);
+        textEdit->setFont(font);
+        BTN_pincode = new QPushButton(centralwidget);
+        BTN_pincode->setObjectName(QString::fromUtf8("BTN_pincode"));
+        BTN_pincode->setGeometry(QRect(120, 560, 80, 25));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -145,6 +152,7 @@ public:
         balanceLabel->setText(QString());
         label->setText(QCoreApplication::translate("MainWindow", "Account Owner:", nullptr));
         owner->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        BTN_pincode->setText(QCoreApplication::translate("MainWindow", "Pinkoodi", nullptr));
     } // retranslateUi
 
 };
