@@ -1,7 +1,7 @@
 #ifndef RFID_H
 #define RFID_H
 #include <QSerialPort>
-
+#include <QObject>
 #include "RFID_global.h"
 
 class RFID_EXPORT RFID
@@ -14,10 +14,16 @@ public:
     QSerialPort *ObjectSerialPort;
     void show();
     QString printLine;
+    int card=0;
+    QString returnCardNumber();
+signals:
+    void signalRFIDcard(QString);
 public slots:
     void timerfunction();
+
 private:
     QString Read;
+    QString cardnumber;
 };
 
 #endif // RFID_H

@@ -24,17 +24,23 @@ void RFID::Luku()
     Read = ObjectSerialPort->readLine();
     qDebug("LUKU");
     if(!Read.contains(">")){
-      if(!Read.isEmpty()){
-          printLine = Read;
-          printLine.remove(10,15);printLine.remove(0,6);
-          qDebug() << "print" << printLine;
+      if(Read != "\r\n"){
+          if(!Read.isEmpty()){
+              Read.remove(10,15);Read.remove(0,6);
+              printLine = Read;
+              qDebug() << "print" << printLine;
+              card=1;
+              //emit signalRFIDcard(printLine);
+          }
       }
-
-      //RFID::Print();
     }
 }
 void RFID::Print()
 {
+    ObjectSerialPort->waitForReadyRead(1000);
+    cardnumber = ObjectSerialPort->readLine();
+    qDebug() << cardnumber;
+    //emit signalRFIDcard(cardnumber);
 }
 
 void RFID::show()
@@ -43,6 +49,11 @@ void RFID::show()
   w= new rfid_ui;
   w->show();
   //this->show();
+}
+
+QString RFID::returnCardNumber()
+{
+    return printLine;
 }
 void RFID::timerfunction()
 {

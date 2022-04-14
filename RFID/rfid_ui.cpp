@@ -7,9 +7,16 @@ rfid_ui::rfid_ui(QWidget *parent) :
     ui(new Ui::rfid_ui)
 {
     ui->setupUi(this);
+    objRFID = new RFID;
 }
 
 rfid_ui::~rfid_ui()
 {
     delete ui;
+}
+
+void rfid_ui::rfidSlot()
+{
+cardnumber=objRFID->returnCardNumber();
+emit cardNumberExe(cardnumber);
 }

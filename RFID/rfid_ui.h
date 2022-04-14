@@ -14,9 +14,14 @@ class rfid_ui : public QWidget
 public:
     rfid_ui(QWidget *parent = nullptr);
     ~rfid_ui();
-
+public slots:
+    void rfidSlot();
+signals:
+    void cardNumberExe(QString);
 private:
     Ui::rfid_ui *ui;
+    QString cardnumber;
+    RFID *objRFID;
 };
 
 #endif // RFID_UI_H
