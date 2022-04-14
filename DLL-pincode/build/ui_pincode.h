@@ -40,6 +40,7 @@ public:
     QPushButton *BTN_clear;
     QPushButton *BTN_ok;
     QLineEdit *le_Pincode;
+    QPushButton *btn_cancel;
 
     void setupUi(QDialog *Pincode)
     {
@@ -127,6 +128,9 @@ public:
         le_Pincode->setCursor(QCursor(Qt::IBeamCursor));
         le_Pincode->setLayoutDirection(Qt::LeftToRight);
         le_Pincode->setAutoFillBackground(false);
+        btn_cancel = new QPushButton(Pincode);
+        btn_cancel->setObjectName(QString::fromUtf8("btn_cancel"));
+        btn_cancel->setGeometry(QRect(110, 360, 116, 24));
 
         retranslateUi(Pincode);
 
@@ -149,6 +153,7 @@ public:
         BTN_clear->setText(QCoreApplication::translate("Pincode", "Clear", nullptr));
         BTN_ok->setText(QCoreApplication::translate("Pincode", "OK", nullptr));
         le_Pincode->setText(QCoreApplication::translate("Pincode", "         Sy\303\266t\303\244 PIN-koodi", nullptr));
+        btn_cancel->setText(QCoreApplication::translate("Pincode", "Cancel", nullptr));
     } // retranslateUi
 
 };

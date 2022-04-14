@@ -20,6 +20,11 @@ public:
 
 signals:
     void pincodeFromUI();
+    void resetTimerSignal();
+    void cancelPINSignal();
+
+public slots:
+    void resetLoginTimer();
 
 private slots:
     void on_BTN_1_clicked();
@@ -45,6 +50,8 @@ private slots:
     void on_BTN_clear_clicked();
 
     void on_BTN_ok_clicked();
+
+    void on_btn_cancel_clicked();
 
 private:
     Ui::Pincode *ui;

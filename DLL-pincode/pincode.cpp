@@ -7,6 +7,44 @@ Pincode::Pincode(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    connect(ui->BTN_0, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_1, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_2, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_3, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_4, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_5, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_6, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_7, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_8, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_9, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_ok, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+    connect(ui->BTN_clear, SIGNAL(clicked()),
+            this, SLOT(resetLoginTimer()));
+
+
+
 }
 
 Pincode::~Pincode()
@@ -17,6 +55,11 @@ Pincode::~Pincode()
 QString Pincode::returnPincode()
 {
     return stringPincode;
+}
+
+void Pincode::resetLoginTimer()
+{
+    emit resetTimerSignal();
 }
 
 void Pincode::on_BTN_1_clicked()
@@ -109,15 +152,17 @@ void Pincode::on_BTN_clear_clicked()
 
 void Pincode::on_BTN_ok_clicked()
 {
-   qDebug() << "ok CLICKED pin DLL"<< stringPincode;
    if(stringPincode.length() > 4) {
        ui->le_Pincode->setText("Try again");
    }
    else {
-   //ui->le_Pincode->setText(stringPincode);
    emit pincodeFromUI();
    }
+}
 
 
+void Pincode::on_btn_cancel_clicked()
+{
+    emit cancelPINSignal();
 }
 

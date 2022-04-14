@@ -15,14 +15,19 @@ public:
     ~DLLpincode();
 
     void showPincodeUI();
+    void closePincodeUI();
     void getPincode();
     QString pincode;
 
 public slots:
     void pincodeSlot();
+    void receiveTimerSignalFromUI();
+    void receiveCancelPin();
 
 signals:
     void signalPincode(QString);
+    void resetLoginTimerSignal();
+    void cancelPincodeLogin();
 
 private:
    Pincode *objPincode;
