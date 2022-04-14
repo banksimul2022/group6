@@ -2,6 +2,8 @@
 #define PINCODE_H
 
 #include <QDialog>
+#include <QDebug>
+
 
 namespace Ui {
 class Pincode;
@@ -14,6 +16,10 @@ class Pincode : public QDialog
 public:
     explicit Pincode(QWidget *parent = nullptr);
     ~Pincode();
+    QString returnPincode();
+
+signals:
+    void pincodeFromUI();
 
 private slots:
     void on_BTN_1_clicked();
@@ -41,9 +47,9 @@ private slots:
     void on_BTN_ok_clicked();
 
 private:
+    Ui::Pincode *ui;
     QString stringPincode;
     QString stringstar;
-    Ui::Pincode *ui;
 };
 
 #endif // PINCODE_H

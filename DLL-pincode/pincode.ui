@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1215</width>
-    <height>832</height>
+    <width>353</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>190</y>
+     <x>50</x>
+     <y>90</y>
      <width>241</width>
      <height>171</height>
     </rect>
@@ -98,8 +98,8 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>360</y>
+     <x>50</x>
+     <y>260</y>
      <width>241</width>
      <height>80</height>
     </rect>
@@ -124,8 +124,8 @@
   <widget class="QLineEdit" name="le_Pincode">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>130</y>
+     <x>50</x>
+     <y>30</y>
      <width>241</width>
      <height>61</height>
     </rect>

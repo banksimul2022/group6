@@ -6,11 +6,17 @@ Pincode::Pincode(QWidget *parent) :
     ui(new Ui::Pincode)
 {
     ui->setupUi(this);
+
 }
 
 Pincode::~Pincode()
 {
     delete ui;
+}
+
+QString Pincode::returnPincode()
+{
+    return stringPincode;
 }
 
 void Pincode::on_BTN_1_clicked()
@@ -103,11 +109,15 @@ void Pincode::on_BTN_clear_clicked()
 
 void Pincode::on_BTN_ok_clicked()
 {
+   qDebug() << "ok CLICKED pin DLL"<< stringPincode;
    if(stringPincode.length() > 4) {
        ui->le_Pincode->setText("Try again");
    }
    else {
-   ui->le_Pincode->setText(stringPincode);
+   //ui->le_Pincode->setText(stringPincode);
+   emit pincodeFromUI();
    }
+
+
 }
 
