@@ -23,6 +23,107 @@ router.get('/:id?',
   }
 });
 
+router.post('/withdrawal', 
+function(request, response) {
+  action.withdrawal(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+    }
+  });
+});
+
+
+router.post('/transfer', 
+function(request, response) {
+  action.transfer(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+    }
+  });
+});
+
+
+router.get('/clientIDfromCard/:card?',
+ function(request, response) {
+  if (request.params.card) {
+    action.clientIDfromCard(request.params.card, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+router.get('/accountIDfromCard/:card?',
+ function(request, response) {
+  if (request.params.card) {
+    action.accountIDfromCard(request.params.card, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+
+router.get('/TenActions/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getTenActions(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+router.post('/Prev10Actions', 
+function(request, response) {
+  action.Prev10Actions(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult[0]);
+    }
+  });
+});
+
+
+router.get('/FiveActions/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getFiveActions(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+router.get('/balance/:id?',
+ function(request, response) {
+  if (request.params.id) {
+    action.getBalance(request.params.id, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
 
 router.post('/', 
 function(request, response) {

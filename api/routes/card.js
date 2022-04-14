@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const card = require('../models/card_model');
 
+
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
@@ -23,6 +24,22 @@ router.get('/:id?',
   }
 });
 
+
+router.get('/getByCard/:card?',
+ function(request, response) {
+  if (request.params.card) {
+    card.getByCard(request.params.card, function(err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  } 
+});
+
+
+ 
 
 router.post('/', 
 function(request, response) {
@@ -58,5 +75,5 @@ function(request, response) {
     }
   });
 });
-
+ 
 module.exports = router;

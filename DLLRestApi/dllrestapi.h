@@ -19,47 +19,40 @@ public:
     void login(QString cardnumber, QString pincode);
     void getBalance(QString id);
     void getAction(QString);
-    void withdrawal(QString, QString);
+    void withdrawal(QString, QString, QString);
     void getTenActions(QString);
     void clientIDfromCard(QString);
+    void browseActions(QString arvo, QString id);
+    void accountIDfromCard(QString);
     QString returnResponseData();
-
-    void setListBalance(QString); //turha?
-
-    QNetworkAccessManager *getWithdrawalManager() const;
-    void setWithdrawalManager(QNetworkAccessManager *newWithdrawalManager);
+    void transfer(QString, QString, QString);
+    void getCardInfo(QString);
 
 signals:
-    //void loginSignal();
     void balanceSignal(QString);
-    void balanceToExe(QString);
-
     void actionSignal(QString);
-    void fiveActionsToExe(QString);
-
+    void browseActions(QString);
     void sendWithdrawalSignal();
     void nameToExe(QString);
-
     void withdrawalReady();
-
     void clientIDsignaltoExe(QString);
+    void loginSignal(QString);
+    void accountIDsignalToExe(QString);
+    void transferReady();
+    void cardInfoSignalToExe(QString);
 
-    void loginSignal();
-    void loginFailed();
 
 
 private slots:
     void loginSlot (QNetworkReply *reply);
-
     void getBalanceSlot (QNetworkReply *reply);
-    void receiveBalanceSignal(QString);
-
     void getActionSlot(QNetworkReply *reply);
-
-    void receiveActionSignal(QString);
     void withdrawalSlot(QNetworkReply *reply);
-
     void clientIDfromCardSlot(QNetworkReply *reply);
+    void browseActionsSlot(QNetworkReply *reply);
+    void accountIDfromCardSlot(QNetworkReply *reply);
+    void transferSlot(QNetworkReply *reply);
+    void cardInfoSlot(QNetworkReply *reply);
 
 
 
@@ -69,6 +62,10 @@ private:
     QNetworkAccessManager *getActionManager;
     QNetworkAccessManager *withdrawalManager;
     QNetworkAccessManager *clientIDfromCardManager;
+    QNetworkAccessManager *prev10actionsManager;
+    QNetworkAccessManager *accountIDfromCardManager;
+    QNetworkAccessManager *transferManager;
+    QNetworkAccessManager *cardInfoManager;
 
 
 

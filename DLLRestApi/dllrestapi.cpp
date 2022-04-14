@@ -1,16 +1,9 @@
 #include "dllrestapi.h"
 
-
-
 DLLRestApi::DLLRestApi(QObject *parent) : QObject(parent)
 {
     qDebug() << "Rest-Api DLL muodostin";
 
-    connect(this, SIGNAL(balanceSignal(QString)),
-            this, SLOT(receiveBalanceSignal(QString)));
-
-    connect(this, SIGNAL(actionSignal(QString)),
-            this, SLOT(receiveActionSignal(QString)));
 }
 
 DLLRestApi::~DLLRestApi()
@@ -31,7 +24,6 @@ void DLLRestApi::login(QString cardnumber, QString pincode) //POST login
     connect(loginManager, SIGNAL(finished (QNetworkReply*)),
             this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager->post(request, QJsonDocument(jsonObj).toJson());
-
 }
 
 
@@ -42,16 +34,11 @@ void DLLRestApi::loginSlot(QNetworkReply *reply)
     response_data=reply->readAll();
     if(response_data == "true"){
         response_data = "Login successful";
-
-
     }
-
     else if(response_data =="false"){
         response_data = "Cardnumber or pincode is wrong";
-        //emit loginFailed();
     }
-
-    emit loginSignal();
+    emit loginSignal(response_data);
     qDebug()<<response_data;
     reply->deleteLater();
     loginManager->deleteLater();
@@ -65,18 +52,14 @@ void DLLRestApi::getBalance(QString id)
     site_url.append(id);
     qDebug() << site_url;
     QNetworkRequest request((site_url));
-
     getBalanceManager = new QNetworkAccessManager(this);
-
     connect(getBalanceManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getBalanceSlot(QNetworkReply*)));
-
     reply = getBalanceManager->get(request);
 }
 
 
 void DLLRestApi::getBalanceSlot(QNetworkReply *reply)
 {
-
     response_data=reply->readAll();
      qDebug()<<"DATA : "+response_data;
      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
@@ -84,33 +67,19 @@ void DLLRestApi::getBalanceSlot(QNetworkReply *reply)
      QString balance;
      foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        //balance+=QString::number((json_obj["balance"].toInt()))+" "+json_obj["name"].toString();
-        //balance+= json_obj["name"].toString()+" "+QString::number(json_obj["balance"].toDouble());
         balance+= QString::number(json_obj["balance"].toDouble());
-
         emit balanceSignal(balance);
-
      }
      QString name;
      foreach (const QJsonValue &value, json_array) {
            QJsonObject json_obj = value.toObject();
            name+= json_obj["name"].toString();
-
-
-        emit nameToExe(name);
-
+           emit nameToExe(name);
      }
      reply->deleteLater();
      getBalanceManager->deleteLater();
 }
 
-
-
-void DLLRestApi::receiveBalanceSignal(QString balance)
-{
-    qDebug()<< "receiveBalanceSignal->>> DLLRestApi emits signal -> balancetoEXE" << balance;
-    emit balanceToExe(balance); //send balance information to EXE
-}
 
 
 
@@ -121,11 +90,8 @@ void DLLRestApi::getAction(QString id)
     site_url.append(id);
     qDebug() << site_url;
     QNetworkRequest request((site_url));
-
     getActionManager = new QNetworkAccessManager(this);
-
     connect(getActionManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getActionSlot(QNetworkReply*)));
-
     reply = getActionManager->get(request);
 }
 
@@ -134,36 +100,30 @@ void DLLRestApi::getAction(QString id)
 
 void DLLRestApi::getActionSlot(QNetworkReply *reply)
 {
-    qDebug()<< "getActionSlot()";
+    qDebug()<< "getActionSlot()+ DATA";
     response_data=reply->readAll();
-     qDebug()<<"DATA : "+response_data;
+     //qDebug()<<"DATA : "+response_data;
      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
      QJsonArray json_array = json_doc.array();
      QString actions;
      foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
         actions+=QString::number((json_obj["id_client"].toInt()))+" "+json_obj["action"].toString()+"   "+QString::number(json_obj["amount"].toDouble())+"€   "+json_obj["action_time"].toString().remove(20,25)+"\r";
-
         emit actionSignal(actions);
-        //qDebug()<< "actions->>>" << actions;
      }
      reply->deleteLater();
      getActionManager->deleteLater();
 }
 
-void DLLRestApi::receiveActionSignal(QString actions)
+
+
+
+void DLLRestApi::withdrawal(QString acc_id, QString client_id, QString amount)
 {
-    qDebug()<< "receiveActionSignal->>>emit fiveActionsToEXE" << actions;
-    emit fiveActionsToExe(actions); //send five newest account actions to exe
-}
-
-
-
-void DLLRestApi::withdrawal(QString id, QString amount)
-{
-    qDebug()<< "withdrawal";
+    qDebug()<< "withdrawal in DLL acc->" <<acc_id << ":client->"<<client_id<<" amount: " << amount;
     QJsonObject jsonObj;
-    jsonObj.insert("id", id); //client id
+    jsonObj.insert("account", acc_id); //acc id
+    jsonObj.insert("client", client_id); //client id
     jsonObj.insert("amount", amount); //withdrawal amount
     QString site_url="http://localhost:3000/actions/withdrawal";
     QNetworkRequest request((site_url));
@@ -187,6 +147,34 @@ void DLLRestApi::withdrawalSlot(QNetworkReply *reply)
 }
 
 
+void DLLRestApi::transfer(QString accSend, QString accRecv, QString amount)
+{
+    qDebug()<< "transfer in DLL account:send->" <<accSend << ":recv->"<<accRecv<<" amount: " << amount;
+    QJsonObject jsonObj;
+    jsonObj.insert("accSend", accSend);
+    jsonObj.insert("accRecv", accRecv);
+    jsonObj.insert("amount", amount);
+    QString site_url="http://localhost:3000/actions/transfer";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    transferManager = new QNetworkAccessManager(this);
+    connect(transferManager, SIGNAL(finished (QNetworkReply*)),
+            this, SLOT(transferSlot(QNetworkReply*)));
+    reply = transferManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+void DLLRestApi::transferSlot(QNetworkReply *reply)
+{
+    qDebug()<< "transferSlot()";
+    emit transferReady();
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    reply->deleteLater();
+    transferManager->deleteLater();
+}
+
+
 void DLLRestApi::getTenActions(QString id)
 {
     qDebug()<< "getTenActions()";
@@ -194,11 +182,8 @@ void DLLRestApi::getTenActions(QString id)
     site_url.append(id);
     qDebug() << site_url;
     QNetworkRequest request((site_url));
-
     getActionManager = new QNetworkAccessManager(this);
-
     connect(getActionManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getActionSlot(QNetworkReply*)));
-
     reply = getActionManager->get(request);
 }
 
@@ -209,11 +194,8 @@ void DLLRestApi::clientIDfromCard(QString card)
     site_url.append(card);
     qDebug() << site_url;
     QNetworkRequest request((site_url));
-
     clientIDfromCardManager = new QNetworkAccessManager(this);
-
     connect(clientIDfromCardManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(clientIDfromCardSlot(QNetworkReply*)));
-
     reply = clientIDfromCardManager->get(request);
 }
 
@@ -221,20 +203,17 @@ void DLLRestApi::clientIDfromCard(QString card)
 
 void DLLRestApi::clientIDfromCardSlot(QNetworkReply *reply)
 {
-    qDebug()<< "clientIDfromCardSlot()";
+    qDebug()<< "clientIDfromCardSlot() in DLL";
     response_data=reply->readAll();
-     qDebug()<<"DATA : "+response_data;
+     qDebug()<<"DATA clientIDcardSlot: "+response_data;
      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
      QJsonArray json_array = json_doc.array();
      QString clientID;
      foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
         clientID+= QString::number((json_obj["id_client"].toInt()));
-
         emit clientIDsignaltoExe(clientID);
-
      }
-
      reply->deleteLater();
      clientIDfromCardManager->deleteLater();
 }
@@ -243,6 +222,104 @@ void DLLRestApi::clientIDfromCardSlot(QNetworkReply *reply)
 QString DLLRestApi::returnResponseData()
 {
     return response_data;
+}
+
+
+void DLLRestApi::browseActions(QString arvo, QString id)
+{
+    qDebug()<< "browseActions() in DLL";
+    QJsonObject jsonObj;
+    jsonObj.insert("arvo", arvo);
+    jsonObj.insert("id", id);
+    QString site_url="http://localhost:3000/actions/Prev10Actions";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    prev10actionsManager = new QNetworkAccessManager(this);
+    connect(prev10actionsManager, SIGNAL(finished (QNetworkReply*)),
+            this, SLOT(browseActionsSlot(QNetworkReply*)));
+    reply = prev10actionsManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+
+void DLLRestApi::browseActionsSlot(QNetworkReply *reply)
+{
+    qDebug()<< "browseActionsSlot() in DLL";
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString prev10;
+    foreach (const QJsonValue &value, json_array) {
+       QJsonObject json_obj = value.toObject();
+       prev10+=QString::number((json_obj["id_client"].toInt()))+" "+json_obj["action"].toString()+"   "+QString::number(json_obj["amount"].toDouble())+"€   "+json_obj["action_time"].toString().remove(20,25)+"\r";
+       emit browseActions(prev10);
+    }
+    reply->deleteLater();
+    prev10actionsManager->deleteLater();
+}
+
+
+void DLLRestApi::accountIDfromCard(QString card)
+{
+    qDebug()<< "accountIDfromCard()";
+    QString site_url="http://localhost:3000/actions/accountIDfromCard/";
+    site_url.append(card);
+    qDebug() << site_url;
+    QNetworkRequest request((site_url));
+    accountIDfromCardManager = new QNetworkAccessManager(this);
+    connect(accountIDfromCardManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(accountIDfromCardSlot(QNetworkReply*)));
+    reply = accountIDfromCardManager->get(request);
+}
+
+
+
+void DLLRestApi::accountIDfromCardSlot(QNetworkReply *reply)
+{
+    qDebug()<< "accountIDfromCardSlot() in DLL";
+    response_data=reply->readAll();
+     qDebug()<<"DATA clientIDcardSlot: "+response_data;
+     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+     QJsonArray json_array = json_doc.array();
+     QString accountID;
+     foreach (const QJsonValue &value, json_array) {
+        QJsonObject json_obj = value.toObject();
+        accountID+= QString::number((json_obj["id_bank_account"].toInt()));
+        emit accountIDsignalToExe(accountID);
+     }
+     reply->deleteLater();
+     clientIDfromCardManager->deleteLater();
+}
+
+
+void DLLRestApi::getCardInfo(QString card)
+{
+    qDebug()<< "getCardInfo()";
+    QString site_url="http://localhost:3000/card/getByCard/";
+    site_url.append(card);
+    qDebug() << site_url;
+    QNetworkRequest request((site_url));
+    cardInfoManager = new QNetworkAccessManager(this);
+    connect(cardInfoManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(cardInfoSlot(QNetworkReply*)));
+    reply = cardInfoManager->get(request);
+}
+
+void DLLRestApi::cardInfoSlot(QNetworkReply *reply)
+{
+     qDebug()<< "cardInfoSlot() in DLL";
+     response_data=reply->readAll();
+     qDebug()<<"DATA: "+response_data;
+     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+     QJsonArray json_array = json_doc.array();
+     QString card;
+     foreach (const QJsonValue &value, json_array) {
+        QJsonObject json_obj = value.toObject();
+        card+= QString::number((json_obj["locked"].toInt()));
+        qDebug()<< "cardInfoSlot() in DLL INFO:->" << card;
+        emit cardInfoSignalToExe(card);
+     }
+     reply->deleteLater();
+     clientIDfromCardManager->deleteLater();
 }
 
 
