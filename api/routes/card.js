@@ -3,6 +3,20 @@ const router = express.Router();
 const card = require('../models/card_model');
 
 
+
+router.post('/cardLock', 
+function(request, response) {
+  card.cardLock(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+    }
+  });
+});
+
+
+
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
@@ -75,5 +89,6 @@ function(request, response) {
     }
   });
 });
+
  
 module.exports = router;

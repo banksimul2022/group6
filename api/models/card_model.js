@@ -5,6 +5,13 @@ const saltRounds = 10;
 
 const card = {
 
+  
+  cardLock: function(parameters, callback) {
+    return db.query('CALL cardLock(?,?);', //(locked 0/1, cardnumber)
+    [parameters.locked, parameters.cardnumber], callback);
+  },
+
+
   getById: function(id, callback) {
     return db.query('select * from card where id_card=?', [id], callback);
   },
@@ -25,11 +32,13 @@ const card = {
   delete: function(id, callback) {
     return db.query('delete from card where id_card=?', [id], callback);
   },
+  
   update: function(id, card, callback) {
     bcrypt.hash(card.pincode, saltRounds, function(err, hash){
       return db.query('update card set cardnumber=?, pincode=?, locked=? where id_card=?',
         [card.cardnumber, hash, card.locked, id], callback);
     });
   }
+  
 };
 module.exports = card;
