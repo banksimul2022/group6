@@ -18,6 +18,7 @@ drawMoney::drawMoney(QWidget *parent) :
     connect(pcustomamount, SIGNAL(startAjastin()),
             this, SLOT(aloitaAika()));
 
+
     OBJJrestApi = new DLLRestApi;
 
     connect(OBJJrestApi,SIGNAL(balanceToExe(QString)),
@@ -46,11 +47,15 @@ drawMoney::drawMoney(QWidget *parent) :
     connect(ui->BTN_500,SIGNAL(clicked()),
             this, SLOT(buttonClicked()));
 
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(resetTimer()));
 
 }
 
+
 drawMoney::~drawMoney()
 {
+    qDebug()<<"drawmoney tuhoaja";
     delete ui;
     delete pcustomamount;
     pcustomamount=nullptr;
@@ -64,8 +69,9 @@ drawMoney::~drawMoney()
 
 void drawMoney::on_BTN_close_clicked()
 {
+    emit startAajastin();
+    timer->stop();
     this->close();
-    emit startAjastin();
 }
 
 
@@ -82,6 +88,7 @@ void drawMoney::on_BTN_draw_clicked()
             ui->lineEdit_2->setText(DLLbalance);
             OBJJrestApi->withdrawal(OwnerID,stringAmount);
         }
+        aika=0;
 }
 
 
@@ -136,7 +143,23 @@ void drawMoney::on_BTN_500_clicked()
 
 void drawMoney::buttonClicked()
 {
-    timer->start(10000);
+    timer->start(1000);
+    //emit startAajastin();
+    aika=0;
+}
+
+void drawMoney::resetTimer()
+{
+    if(aika==9)
+    {
+        emit startAajastin();
+    }
+}
+
+void drawMoney::drawTimerSlot()
+{
+
+    timer->start(1000);
 }
 
 void drawMoney::recvValue(QString t)
@@ -170,12 +193,26 @@ void drawMoney::recBalanceDLL(QString Dllbal)
 
 void drawMoney::backToMain()
 {
-    this->close();
+    if(this->isActiveWindow()){
+    aika++;
+    qDebug()<<aika;
+    if(aika==10)
+    {
+        this->close();
+        timer->stop();
+        aika=0;
+    }
+    }
+    else
+    {
+        aika=0;
+    }
 }
 
 void drawMoney::aloitaAika()
 {
-    timer->start(10000);
+    qDebug()<<"aloitaAika drawMoney";
+    timer->start(1000);
 }
 
 

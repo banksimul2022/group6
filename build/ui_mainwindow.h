@@ -44,6 +44,7 @@ public:
     QLabel *owner;
     QTextEdit *textEdit;
     QPushButton *BTN_pincode;
+    QLabel *timer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -126,6 +127,9 @@ public:
         BTN_pincode = new QPushButton(centralwidget);
         BTN_pincode->setObjectName(QString::fromUtf8("BTN_pincode"));
         BTN_pincode->setGeometry(QRect(120, 560, 80, 25));
+        timer = new QLabel(centralwidget);
+        timer->setObjectName(QString::fromUtf8("timer"));
+        timer->setGeometry(QRect(440, 580, 158, 46));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -153,6 +157,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Account Owner:", nullptr));
         owner->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         BTN_pincode->setText(QCoreApplication::translate("MainWindow", "Pinkoodi", nullptr));
+        timer->setText(QString());
     } // retranslateUi
 
 };

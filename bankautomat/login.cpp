@@ -10,19 +10,13 @@ login::login(QWidget *parent) :
     objPincode = new DLLpincode;
     objMainWindow = new MainWindow;
 
-
-
-
-
     connect(objPincode, SIGNAL(signalPincode(QString)), // PIN DLL->EXE
             this, SLOT(receivePincode(QString)));
 
     connect(objRestApi, SIGNAL(loginSignal()),
             this, SLOT(receiveLogin()));
-
-    connect(objRestApi, SIGNAL(loginFailed()),
-            this, SLOT(receiveLogin()));
-
+    connect(this, SIGNAL(testiSignal()),
+            objRestApi, SLOT(withdrawalSlot()));
 
 }
 
@@ -51,9 +45,6 @@ void login::checkLogin()
     //objPincode->getPincode();
     //qDebug() << "checkLogin() in EXE pin" << pincode;
     //objRestApi->login(cardnumber, pincode);
-
-
-
 
     //objRestApi->lo
 
@@ -91,5 +82,6 @@ void login::on_BTN_testi_clicked()
 {
     cardnumber=ui->lineEdit->text();
     objPincode->showPincodeUI();
+    emit testiSignal();
 }
 

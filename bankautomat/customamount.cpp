@@ -12,12 +12,14 @@ customamount::customamount(QWidget *parent) :
 
     connect(timer, SIGNAL(timeout()),
             this,SLOT(kiinni()));
-
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(resetTimer()));
 
 }
 
 customamount::~customamount()
 {
+    qDebug()<<"customamount tuhoaja";
     delete ui;
 
     delete timer;
@@ -26,12 +28,33 @@ customamount::~customamount()
 
 void customamount::kiinni()
 {
-    this->close();
+    if(this->isActiveWindow()){
+    aika++;
+    qDebug()<<aika;
+    if(aika==10)
+    {
+        this->close();
+        timer->stop();
+        aika=0;
+    }
+    }
+    else
+    {
+        aika=0;
+    }
 }
 
 void customamount::ajastin()
 {
-    timer->start(10000);
+    timer->start(1000);
+}
+
+void customamount::resetTimer()
+{
+    if(aika==9)
+    {
+        emit startAjastin();
+    }
 }
 
 void customamount::on_BTN_draw_clicked()
@@ -39,11 +62,7 @@ void customamount::on_BTN_draw_clicked()
     custom = ui->lineEdit->text();
     emit sendText(custom);
     this->close();
-
-    if(this->close())
-    {
-        qDebug()<<"Ajastin päälle";
-        emit startAjastin();
-    }
+    timer->stop();
+    emit startAjastin();
 }
 

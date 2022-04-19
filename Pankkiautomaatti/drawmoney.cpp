@@ -10,7 +10,8 @@ DrawMoney::DrawMoney(QWidget *parent) :
 
     objDrawCustom = new DrawMoneyCustom;
     objRestApi = new DLLRestApi;
-
+    timer = new QTimer;
+    timerWarning = new QTimer;
 
     connect(objDrawCustom,SIGNAL(customAmountSignal(QString)),
             this, SLOT(receiveCustomAmount(QString)));
@@ -23,9 +24,6 @@ DrawMoney::DrawMoney(QWidget *parent) :
 
     connect(objRestApi, SIGNAL(nameToExe(QString)),
             this, SLOT(receiveClientName(QString)));
-
-    timer = new QTimer;
-
 
     connect(ui->btn_customAmount, SIGNAL(clicked()),
             objDrawCustom, SLOT(startCustomTimer()));
@@ -57,15 +55,14 @@ DrawMoney::DrawMoney(QWidget *parent) :
     connect(ui->btn_credit, SIGNAL(clicked()),
             this, SLOT(startDrawMoneyTimer()));
 
-
-    //timer napit
-
     connect(timer, SIGNAL(timeout()),
             this, SLOT(drawMoneyIdleSlot()));
 
     connect(objDrawCustom,SIGNAL(drawMoneyTimerSignal()),
             this, SLOT(startDrawMoneyTimer()));
 
+    connect(timerWarning, SIGNAL(timeout()),
+            this, SLOT(clearWarning()));
 
     setWindowFlag(Qt::WindowStaysOnTopHint);
     setWindowModality(Qt::ApplicationModal);
@@ -142,7 +139,6 @@ void DrawMoney::drawMoneyIdleSlot()
 
 }
 
-
 void DrawMoney::on_btn_Draw20_clicked()
 {
     drawAmount = "20"; 
@@ -204,14 +200,20 @@ void DrawMoney::on_btn_Draw_clicked()
         }
         else {            
             ui->label_warning->setText("Account balance too low\n" "Balance: "+balance+"€\n"+"Draw Amount: "+drawAmount+"€");
+            timerWarning->start(10000);
         }
     }
     else {
         objRestApi->withdrawal(accountID, clientID, drawAmount); //id_bank_account, id_client, drawAmount
         this->close();
     }
-
 }
+
+void DrawMoney::clearWarning()
+{
+    ui->label_warning->setText("");
+}
+
 
 
 void DrawMoney::on_btn_debit_clicked()

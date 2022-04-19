@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_drawMoney_t {
-    QByteArrayData data[21];
-    char stringdata0[297];
+    QByteArrayData data[23];
+    char stringdata0[323];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,32 +37,35 @@ QT_MOC_LITERAL(1, 10, 11), // "sendBalance"
 QT_MOC_LITERAL(2, 22, 0), // ""
 QT_MOC_LITERAL(3, 23, 16), // "balanceDrawmoney"
 QT_MOC_LITERAL(4, 40, 10), // "startTimer"
-QT_MOC_LITERAL(5, 51, 12), // "startAjastin"
-QT_MOC_LITERAL(6, 64, 20), // "on_BTN_close_clicked"
-QT_MOC_LITERAL(7, 85, 19), // "on_BTN_draw_clicked"
-QT_MOC_LITERAL(8, 105, 18), // "on_BTN_muu_clicked"
-QT_MOC_LITERAL(9, 124, 17), // "on_BTN_20_clicked"
-QT_MOC_LITERAL(10, 142, 17), // "on_BTN_40_clicked"
-QT_MOC_LITERAL(11, 160, 17), // "on_BTN_60_clicked"
-QT_MOC_LITERAL(12, 178, 18), // "on_BTN_100_clicked"
-QT_MOC_LITERAL(13, 197, 18), // "on_BTN_200_clicked"
-QT_MOC_LITERAL(14, 216, 18), // "on_BTN_500_clicked"
-QT_MOC_LITERAL(15, 235, 13), // "buttonClicked"
-QT_MOC_LITERAL(16, 249, 9), // "recvValue"
-QT_MOC_LITERAL(17, 259, 1), // "t"
-QT_MOC_LITERAL(18, 261, 13), // "recBalanceDLL"
-QT_MOC_LITERAL(19, 275, 10), // "backToMain"
-QT_MOC_LITERAL(20, 286, 10) // "aloitaAika"
+QT_MOC_LITERAL(5, 51, 13), // "startAajastin"
+QT_MOC_LITERAL(6, 65, 20), // "on_BTN_close_clicked"
+QT_MOC_LITERAL(7, 86, 19), // "on_BTN_draw_clicked"
+QT_MOC_LITERAL(8, 106, 18), // "on_BTN_muu_clicked"
+QT_MOC_LITERAL(9, 125, 17), // "on_BTN_20_clicked"
+QT_MOC_LITERAL(10, 143, 17), // "on_BTN_40_clicked"
+QT_MOC_LITERAL(11, 161, 17), // "on_BTN_60_clicked"
+QT_MOC_LITERAL(12, 179, 18), // "on_BTN_100_clicked"
+QT_MOC_LITERAL(13, 198, 18), // "on_BTN_200_clicked"
+QT_MOC_LITERAL(14, 217, 18), // "on_BTN_500_clicked"
+QT_MOC_LITERAL(15, 236, 13), // "buttonClicked"
+QT_MOC_LITERAL(16, 250, 10), // "resetTimer"
+QT_MOC_LITERAL(17, 261, 13), // "drawTimerSlot"
+QT_MOC_LITERAL(18, 275, 9), // "recvValue"
+QT_MOC_LITERAL(19, 285, 1), // "t"
+QT_MOC_LITERAL(20, 287, 13), // "recBalanceDLL"
+QT_MOC_LITERAL(21, 301, 10), // "backToMain"
+QT_MOC_LITERAL(22, 312, 10) // "aloitaAika"
 
     },
     "drawMoney\0sendBalance\0\0balanceDrawmoney\0"
-    "startTimer\0startAjastin\0on_BTN_close_clicked\0"
+    "startTimer\0startAajastin\0on_BTN_close_clicked\0"
     "on_BTN_draw_clicked\0on_BTN_muu_clicked\0"
     "on_BTN_20_clicked\0on_BTN_40_clicked\0"
     "on_BTN_60_clicked\0on_BTN_100_clicked\0"
     "on_BTN_200_clicked\0on_BTN_500_clicked\0"
-    "buttonClicked\0recvValue\0t\0recBalanceDLL\0"
-    "backToMain\0aloitaAika"
+    "buttonClicked\0resetTimer\0drawTimerSlot\0"
+    "recvValue\0t\0recBalanceDLL\0backToMain\0"
+    "aloitaAika"
 };
 #undef QT_MOC_LITERAL
 
@@ -72,7 +75,7 @@ static const uint qt_meta_data_drawMoney[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -80,26 +83,28 @@ static const uint qt_meta_data_drawMoney[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  104,    2, 0x06 /* Public */,
-       3,    1,  107,    2, 0x06 /* Public */,
-       4,    0,  110,    2, 0x06 /* Public */,
-       5,    0,  111,    2, 0x06 /* Public */,
+       1,    1,  114,    2, 0x06 /* Public */,
+       3,    1,  117,    2, 0x06 /* Public */,
+       4,    0,  120,    2, 0x06 /* Public */,
+       5,    0,  121,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,  112,    2, 0x08 /* Private */,
-       7,    0,  113,    2, 0x08 /* Private */,
-       8,    0,  114,    2, 0x08 /* Private */,
-       9,    0,  115,    2, 0x08 /* Private */,
-      10,    0,  116,    2, 0x08 /* Private */,
-      11,    0,  117,    2, 0x08 /* Private */,
-      12,    0,  118,    2, 0x08 /* Private */,
-      13,    0,  119,    2, 0x08 /* Private */,
-      14,    0,  120,    2, 0x08 /* Private */,
-      15,    0,  121,    2, 0x08 /* Private */,
-      16,    1,  122,    2, 0x0a /* Public */,
-      18,    1,  125,    2, 0x0a /* Public */,
-      19,    0,  128,    2, 0x0a /* Public */,
-      20,    0,  129,    2, 0x0a /* Public */,
+       6,    0,  122,    2, 0x08 /* Private */,
+       7,    0,  123,    2, 0x08 /* Private */,
+       8,    0,  124,    2, 0x08 /* Private */,
+       9,    0,  125,    2, 0x08 /* Private */,
+      10,    0,  126,    2, 0x08 /* Private */,
+      11,    0,  127,    2, 0x08 /* Private */,
+      12,    0,  128,    2, 0x08 /* Private */,
+      13,    0,  129,    2, 0x08 /* Private */,
+      14,    0,  130,    2, 0x08 /* Private */,
+      15,    0,  131,    2, 0x08 /* Private */,
+      16,    0,  132,    2, 0x08 /* Private */,
+      17,    0,  133,    2, 0x08 /* Private */,
+      18,    1,  134,    2, 0x0a /* Public */,
+      20,    1,  137,    2, 0x0a /* Public */,
+      21,    0,  140,    2, 0x0a /* Public */,
+      22,    0,  141,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Double,    2,
@@ -118,7 +123,9 @@ static const uint qt_meta_data_drawMoney[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   17,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   19,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void,
     QMetaType::Void,
@@ -135,7 +142,7 @@ void drawMoney::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->sendBalance((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 1: _t->balanceDrawmoney((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->startTimer(); break;
-        case 3: _t->startAjastin(); break;
+        case 3: _t->startAajastin(); break;
         case 4: _t->on_BTN_close_clicked(); break;
         case 5: _t->on_BTN_draw_clicked(); break;
         case 6: _t->on_BTN_muu_clicked(); break;
@@ -146,10 +153,12 @@ void drawMoney::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 11: _t->on_BTN_200_clicked(); break;
         case 12: _t->on_BTN_500_clicked(); break;
         case 13: _t->buttonClicked(); break;
-        case 14: _t->recvValue((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 15: _t->recBalanceDLL((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 16: _t->backToMain(); break;
-        case 17: _t->aloitaAika(); break;
+        case 14: _t->resetTimer(); break;
+        case 15: _t->drawTimerSlot(); break;
+        case 16: _t->recvValue((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 17: _t->recBalanceDLL((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 18: _t->backToMain(); break;
+        case 19: _t->aloitaAika(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -177,7 +186,7 @@ void drawMoney::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         }
         {
             using _t = void (drawMoney::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&drawMoney::startAjastin)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&drawMoney::startAajastin)) {
                 *result = 3;
                 return;
             }
@@ -214,13 +223,13 @@ int drawMoney::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 18;
+        _id -= 20;
     }
     return _id;
 }
@@ -246,7 +255,7 @@ void drawMoney::startTimer()
 }
 
 // SIGNAL 3
-void drawMoney::startAjastin()
+void drawMoney::startAajastin()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }

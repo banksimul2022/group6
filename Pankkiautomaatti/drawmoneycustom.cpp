@@ -6,16 +6,13 @@ DrawMoneyCustom::DrawMoneyCustom(QWidget *parent) :
     ui(new Ui::DrawMoneyCustom)
 {
     ui->setupUi(this);
+    timer = new QTimer;
 
     setWindowFlag(Qt::WindowStaysOnTopHint);
     setWindowModality(Qt::ApplicationModal);
 
-    timer = new QTimer;
-
     connect(timer, SIGNAL(timeout()),
             this, SLOT(customIdleSlot()));
-
-
 
 }
 

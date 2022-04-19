@@ -8,9 +8,17 @@ transfer::transfer(QWidget *parent) :
     ui->setupUi(this);
 
     objRestApi = new DLLRestApi;
+    timer = new QTimer;
 
     connect(objRestApi, SIGNAL(transferReady()),
             this, SLOT(receiveTransferReady()));
+
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(transferIdleSlot()));
+
+    setWindowFlag(Qt::WindowStaysOnTopHint);
+    setWindowModality(Qt::ApplicationModal);
+
 
 }
 
@@ -31,6 +39,19 @@ void transfer::receiveTransferReady()
     emit updateMainBalance();
 }
 
+void transfer::startTransferTimer()
+{
+    qDebug() << "startTransferTimer()";
+    timer->start(10000);
+}
+
+void transfer::transferIdleSlot()
+{
+    qDebug() << "transferIdleSlot()";
+    emit mainTimerSig();
+    this->close();
+}
+
 void transfer::on_btn_transfer_clicked()
 {
     receiverAccID = ui->le_recvAccID->text();
@@ -39,8 +60,8 @@ void transfer::on_btn_transfer_clicked()
     qDebug() << "receiverAccID" << receiverAccID;
     qDebug() << "transferAmount" << transferAmount;
 
+
     objRestApi->transfer(accID, receiverAccID, transferAmount);
-    //objRestApi->transfer("8", "1", transferAmount);
 
     this->close();
 }

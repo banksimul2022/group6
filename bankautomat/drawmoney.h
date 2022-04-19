@@ -23,7 +23,7 @@ public:
     explicit drawMoney(QWidget *parent = nullptr);
     ~drawMoney();
     QString Customdraw;
-    QTimer *timer;
+
 
 
 
@@ -47,6 +47,11 @@ private slots:
     void on_BTN_500_clicked();
 
     void buttonClicked();
+
+    void resetTimer();
+
+    void drawTimerSlot();
+
 public slots:
     void recvValue(QString t);
     void recBalanceDLL(QString);
@@ -57,7 +62,7 @@ signals:
     void sendBalance(double);
     void balanceDrawmoney(QString);
     void startTimer();
-    void startAjastin();
+    void startAajastin();
 
 
 private:
@@ -72,6 +77,8 @@ private:
     double doubleDLLt;
     QString SignaltoDraw;
     QString OwnerID;
+    QTimer *timer;
+    int aika=0;
 
 
 

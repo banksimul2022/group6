@@ -11,6 +11,8 @@ login::login(QWidget *parent) :
     objPincode = new DLLpincode(this);
     objMainWindow = new MainWindow;
     timer = new QTimer;
+    timerWarning = new QTimer;
+
 
 
 
@@ -64,6 +66,14 @@ login::login(QWidget *parent) :
      connect(this, SIGNAL(wrongPinSignal()),
              objPincode, SLOT(exeWrongPin()));
 
+     connect(objRestApi, SIGNAL(cardLockReady()),
+             this, SLOT(cardLockInfo()));
+
+     connect(timerWarning, SIGNAL(timeout()),
+             this, SLOT(loginIdleSlot()));
+
+     connect(this, SIGNAL(cardLockWarning()),
+             objPincode, SLOT(exeCardLockWarning()));
 
 
     objRFID->getRFIDcard();
@@ -93,7 +103,7 @@ login::~login()
 
 }
 
-void login::checkLogin()
+void login::checkLogin() //turha?
 {
     qDebug() << "checkLogin() in EXE card" << cardnumber;
 
@@ -104,10 +114,6 @@ void login::checkLogin()
     //objRestApi->login(cardnumber, pincode);
 
 
-
-
-    //objRestApi->lo
-
 }
 
 void login::receiveRFIDcard(QString card) //kortinnumero DLL->EXE
@@ -117,6 +123,7 @@ void login::receiveRFIDcard(QString card) //kortinnumero DLL->EXE
     ui->le_RFID->setText(cardnumber);
     qDebug() << "receiveRFIDcard() in EXE" << cardnumber;
     objRestApi->getCardInfo(cardnumber);
+    //this->close
 
 }
 
@@ -127,12 +134,17 @@ void login::receiveLogin(QString loginInfo) //timer napit -> pincode.dll
     qDebug() << "loginTries: " <<loginTries;
 
     if(loginTries == 3 || cardLocked == '1')
-    {
+    {  
 
+        objRestApi->cardLock(cardnumber);
+        emit cardLockWarning();
         qDebug() << "CARD IS LOCKED";
 
-        qApp->quit(); //DLL update card-locked ->signalReady->loginIdleSlot()
-        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+
+    } else {
+        qDebug() << "login else == väärä pin";
+        emit wrongPinSignal();
+        loginTries++;
     }
 
     if(loginInfo == "Login successful" && cardLocked == '0')
@@ -147,12 +159,14 @@ void login::receiveLogin(QString loginInfo) //timer napit -> pincode.dll
         timer->stop();
 
         loginTries = 1;
-    }else {
-        qDebug() << "login else == väärä pin";
-        emit wrongPinSignal();
-        loginTries++;
     }
 
+
+}
+
+void login::cardLockInfo()
+{
+    timerWarning->start(2000);
 }
 
 void login::receiveCardInfo(QString info)
@@ -160,6 +174,7 @@ void login::receiveCardInfo(QString info)
     qDebug() << "receiveCardInfo() in EXE" << info;
     cardLocked = info;
 }
+
 
 void login::receivePincode(QString pin) // PIN DLL->EXE
 {

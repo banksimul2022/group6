@@ -33,12 +33,14 @@ public slots:
     void resetTimer();
     void loginIdleSlot();
     void receiveCardInfo(QString);
+    void cardLockInfo();
 
 signals:
     void clientIDtoMainWindow(QString);
     void accountIDtoMainWindow(QString);
     void MainTimerSignal();
     void wrongPinSignal();
+    void cardLockWarning();
 
 
 private slots:
@@ -54,6 +56,7 @@ private:
     QString clientID;
     QString accountID;
     QTimer *timer;
+    QTimer *timerWarning;
     QString cardLocked;
 
 

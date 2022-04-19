@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
             this,SLOT(RecvName(QString)));
     OwnerID = "1";
 
-    timer = new QTimer(this);
+    timer = new QTimer;
 
     connect(timer, SIGNAL(timeout()),
             this,SLOT(backToSignin()));
@@ -38,17 +38,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->prevAction,SIGNAL(clicked()),
             this, SLOT(buttonClicked()));
 
-    connect(ui->draw,SIGNAL(clicked()),
-            this, SLOT(buttonClicked()));
-
-    connect(pdrawMoney, SIGNAL(startAjastin()),
+    connect(pdrawMoney, SIGNAL(startAajastin()),
             this, SLOT(aloitaTaika()));
 
-    timer->start(30000);
+    connect(this, SIGNAL(drawTimer()),
+           pdrawMoney, SLOT(drawTimerSlot()));
+
+    timer->start(1000);
 }
 
 MainWindow::~MainWindow()
 {
+    qDebug()<<"mainwindow tuhoaja";
     delete ui;
 
     delete pdrawMoney;
@@ -63,12 +64,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::backToSignin()
 {
-    this->close();
+    if(this->isActiveWindow()){
+    aika++;
+    qDebug()<<aika;
+    if(aika==30)
+    {
+        this->close();
+        timer->stop();
+        aika=0;
+    }
+    }
+    else
+    {
+        aika=0;
+    }
 }
 
 void MainWindow::aloitaTaika()
 {
-    timer->start(30000);
+    qDebug()<<"Main timer start";
+    timer->start(1000);
 }
 
 
@@ -103,6 +118,8 @@ void MainWindow::on_draw_clicked()
 {
     timer->stop();
     pdrawMoney->show();
+    aika=0;
+    emit drawTimer();
 
 }
 
@@ -114,7 +131,8 @@ void MainWindow::on_close_clicked()
 
 void MainWindow::buttonClicked()
 {
-    timer->start(30000);
+    timer->start(1000);
+    aika=0;
 }
 
 void MainWindow::recvBalance(double b)

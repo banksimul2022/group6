@@ -22,6 +22,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>20</string>
    </property>
@@ -34,6 +40,12 @@
      <width>81</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>40</string>
@@ -48,6 +60,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>60</string>
    </property>
@@ -60,6 +78,12 @@
      <width>81</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>100</string>
@@ -74,6 +98,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>200</string>
    </property>
@@ -86,6 +116,12 @@
      <width>81</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>500</string>
@@ -100,8 +136,14 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>Muu summa</string>
+    <string>Select custom amount</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_Draw">
@@ -112,6 +154,12 @@
      <width>81</width>
      <height>50</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Draw</string>
@@ -128,7 +176,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -142,6 +190,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>DEBIT</string>
    </property>
@@ -154,6 +208,12 @@
      <width>81</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>CREDIT</string>
@@ -175,7 +235,7 @@
     </font>
    </property>
    <property name="text">
-    <string>warning</string>
+    <string/>
    </property>
   </widget>
  </widget>

@@ -15,13 +15,15 @@ SOURCES += \
     drawmoney.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    timer.cpp
 
 HEADERS += \
     customamount.h \
     drawmoney.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    timer.h
 
 FORMS += \
     customamount.ui \
@@ -35,12 +37,15 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-win32: LIBS += -LC:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi/build/debug/ -lDLLRestApi
 
-INCLUDEPATH += C:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi
-DEPENDPATH += C:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi
 
 win32: LIBS += -LC:/Users/Pasanteeri/Desktop/group6-DLLPincode/DLL-pincode/build/debug/ -lDLL-pincode
 
 INCLUDEPATH += C:/Users/Pasanteeri/Desktop/group6-DLLPincode/DLL-pincode
 DEPENDPATH += C:/Users/Pasanteeri/Desktop/group6-DLLPincode/DLL-pincode
+
+
+win32: LIBS += -LC:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi/build/debug/ -lDLLRestApi
+
+INCLUDEPATH += C:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi
+DEPENDPATH += C:/Users/Pasanteeri/Desktop/group6-CRUD/DLLRestApi

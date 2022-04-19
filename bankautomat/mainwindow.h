@@ -45,6 +45,9 @@ public slots:
     void aloitaTaika();
 
 
+signals:
+    void drawTimer();
+
 
 
 private:
@@ -59,6 +62,7 @@ private:
     QString OwnerID;
     QTimer *timer;
     DLLpincode *objpincode;
+    int aika=0;
 
 
 };

@@ -34,7 +34,7 @@ public slots:
     void receiveAccountIDinDrawMoney(QString);
     void startDrawMoneyTimer();
     void drawMoneyIdleSlot();
-
+    void clearWarning();
 
 private slots:
     void on_btn_Draw20_clicked();
@@ -69,6 +69,7 @@ private:
     bool credit = false;
 
     QTimer *timer;
+    QTimer *timerWarning;
 
 
 

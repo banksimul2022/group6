@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "dllrestapi.h"
 #include <QDebug>
+#include <QTimer>
 
 namespace Ui {
 class transfer;
@@ -19,10 +20,13 @@ public:
 
 signals:
     void updateMainBalance();
+    void mainTimerSig();
 
 public slots:
     void receiveAccIDinTransfer(QString);
     void receiveTransferReady();
+    void startTransferTimer();
+    void transferIdleSlot();
 
 private slots:
     void on_btn_transfer_clicked();
@@ -33,6 +37,7 @@ private:
     QString transferAmount;
     QString accID;
     QString receiverAccID;
+    QTimer *timer;
 };
 
 #endif // TRANSFER_H

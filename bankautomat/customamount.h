@@ -23,17 +23,19 @@ public slots:
     void kiinni();
     void ajastin();
 
+
 private slots:
     void on_BTN_draw_clicked();
+    void resetTimer();
 signals:
     void sendText(QString);
-    void sendTimer();
     void startAjastin();
 
 private:
     Ui::customamount *ui;
     QString custom;
     QTimer *timer;
+    int aika=0;
 
 };
 

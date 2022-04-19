@@ -27,6 +27,8 @@ public slots:
 
 private slots:
     void on_BTN_testi_clicked();
+signals:
+    void testiSignal();
 
 private:
     Ui::login *ui;

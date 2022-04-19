@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objDrawMoney, SIGNAL(mainTimerSignal()),
             this, SLOT(startMainTimer()));
 
-
     connect(ui->btn_balance, SIGNAL(clicked()),
             this, SLOT(startMainTimer()));
 
@@ -74,6 +73,12 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(startMainTimer()));
 
     connect(ui->btn_Siirto, SIGNAL(clicked()),
+            this, SLOT(startMainTimer()));
+
+    connect(ui->btn_Siirto, SIGNAL(clicked()),
+            objTransfer, SLOT(startTransferTimer()));
+
+    connect(objTransfer, SIGNAL(mainTimerSig()), //käynnistää pääkäyttöliittymän ajastimen kun transfer sulkeutuu
             this, SLOT(startMainTimer()));
 
 
@@ -109,7 +114,7 @@ void MainWindow::receiveAccountIDfromLogin(QString id)
 
 void MainWindow::startMainTimer()
 {
-    qDebug() << "startMainTimer 10sec";
+    qDebug() << "startMainTimer 30sec";
     timer->start(30000);
 }
 
