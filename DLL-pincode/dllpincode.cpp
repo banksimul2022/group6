@@ -20,6 +20,12 @@ DLLpincode::DLLpincode(QObject *parent) : QObject(parent)
     connect(objPincode, SIGNAL(cancelPINSignal()),
             this, SLOT(receiveCancelPin()));
 
+    connect(this, SIGNAL(wrongPinToUI()),
+            objPincode, SLOT(updateScreen()));
+
+    connect(this, SIGNAL(cardLockToUI()),
+            objPincode, SLOT(cardLockInfo()));
+
 }
 
 DLLpincode::~DLLpincode()
@@ -61,5 +67,15 @@ void DLLpincode::receiveTimerSignalFromUI()
 void DLLpincode::receiveCancelPin()
 {
     emit cancelPincodeLogin();
+}
+
+void DLLpincode::exeWrongPin()
+{
+    emit wrongPinToUI();
+}
+
+void DLLpincode::exeCardLockWarning()
+{
+    emit cardLockToUI();
 }
 

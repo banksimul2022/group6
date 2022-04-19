@@ -62,6 +62,17 @@ void Pincode::resetLoginTimer()
     emit resetTimerSignal();
 }
 
+void Pincode::updateScreen()
+{
+    ui->le_Pincode->setText("Wrong pincode");
+}
+
+void Pincode::cardLockInfo()
+{
+    qDebug() << "cardLockInfo in DLL";
+    ui->le_Pincode->setText("Card is locked");
+}
+
 void Pincode::on_BTN_1_clicked()
 {
     stringPincode.append("1");
@@ -152,8 +163,8 @@ void Pincode::on_BTN_clear_clicked()
 
 void Pincode::on_BTN_ok_clicked()
 {
-   if(stringPincode.length() > 4) {
-       ui->le_Pincode->setText("Try again");
+   if(stringPincode.length() > 4 || stringPincode.length() < 4) {
+       ui->le_Pincode->setText("PIN must be 4 numbers");
    }
    else {
    emit pincodeFromUI();

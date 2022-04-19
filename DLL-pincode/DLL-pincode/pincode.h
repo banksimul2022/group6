@@ -25,6 +25,8 @@ signals:
 
 public slots:
     void resetLoginTimer();
+    void updateScreen();
+    void cardLockInfo();
 
 private slots:
     void on_BTN_1_clicked();

@@ -23,11 +23,15 @@ public slots:
     void pincodeSlot();
     void receiveTimerSignalFromUI();
     void receiveCancelPin();
+    void exeWrongPin();
+    void exeCardLockWarning();
 
 signals:
     void signalPincode(QString);
     void resetLoginTimerSignal();
     void cancelPincodeLogin();
+    void wrongPinToUI();
+    void cardLockToUI();
 
 private:
    Pincode *objPincode;
