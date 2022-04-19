@@ -102,7 +102,6 @@ void DLLRestApi::getActionSlot(QNetworkReply *reply)
 {
     qDebug()<< "getActionSlot()+ DATA";
     response_data=reply->readAll();
-     //qDebug()<<"DATA : "+response_data;
      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
      QJsonArray json_array = json_doc.array();
      QString actions;
@@ -304,6 +303,7 @@ void DLLRestApi::getCardInfo(QString card)
     reply = cardInfoManager->get(request);
 }
 
+
 void DLLRestApi::cardInfoSlot(QNetworkReply *reply)
 {
      qDebug()<< "cardInfoSlot() in DLL";
@@ -319,7 +319,43 @@ void DLLRestApi::cardInfoSlot(QNetworkReply *reply)
         emit cardInfoSignalToExe(card);
      }
      reply->deleteLater();
-     clientIDfromCardManager->deleteLater();
+     cardInfoManager->deleteLater();
 }
+
+
+
+void DLLRestApi::cardLock(QString cardnumber)
+{
+    qDebug()<< "cardLock in DLL cardnumber->" <<cardnumber;
+    QJsonObject jsonObj;
+    jsonObj.insert("locked", "1");
+    jsonObj.insert("cardnumber", cardnumber);
+    QString site_url="http://localhost:3000/card/cardLock/";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    cardLockManager = new QNetworkAccessManager(this);
+    connect(cardLockManager, SIGNAL(finished (QNetworkReply*)),
+            this, SLOT(cardLockSlot(QNetworkReply*)));
+    reply = cardLockManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+
+
+
+void DLLRestApi::cardLockSlot(QNetworkReply *reply)
+{
+    qDebug()<< "cardLockSlot()";
+    emit cardLockReady();
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    reply->deleteLater();
+    cardLockManager->deleteLater();
+}
+
+
+
+
+
+
 
 

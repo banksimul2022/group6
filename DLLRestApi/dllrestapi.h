@@ -27,6 +27,7 @@ public:
     QString returnResponseData();
     void transfer(QString, QString, QString);
     void getCardInfo(QString);
+    void cardLock(QString);
 
 signals:
     void balanceSignal(QString);
@@ -40,6 +41,7 @@ signals:
     void accountIDsignalToExe(QString);
     void transferReady();
     void cardInfoSignalToExe(QString);
+    void cardLockReady();
 
 
 
@@ -53,6 +55,7 @@ private slots:
     void accountIDfromCardSlot(QNetworkReply *reply);
     void transferSlot(QNetworkReply *reply);
     void cardInfoSlot(QNetworkReply *reply);
+    void cardLockSlot(QNetworkReply *reply);
 
 
 
@@ -66,6 +69,7 @@ private:
     QNetworkAccessManager *accountIDfromCardManager;
     QNetworkAccessManager *transferManager;
     QNetworkAccessManager *cardInfoManager;
+    QNetworkAccessManager *cardLockManager;
 
 
 
