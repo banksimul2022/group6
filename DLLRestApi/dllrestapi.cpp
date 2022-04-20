@@ -146,12 +146,12 @@ void DLLRestApi::withdrawalSlot(QNetworkReply *reply)
 }
 
 
-void DLLRestApi::transfer(QString accSend, QString accRecv, QString amount)
+void DLLRestApi::transfer(QString accSend, QString accNumberRecv, QString amount)
 {
-    qDebug()<< "transfer in DLL account:send->" <<accSend << ":recv->"<<accRecv<<" amount: " << amount;
+    qDebug()<< "transfer in DLL account:send->" <<accSend << ":recv->"<<accNumberRecv<<" amount: " << amount;
     QJsonObject jsonObj;
     jsonObj.insert("accSend", accSend);
-    jsonObj.insert("accRecv", accRecv);
+    jsonObj.insert("accNumberRecv", accNumberRecv);
     jsonObj.insert("amount", amount);
     QString site_url="http://localhost:3000/actions/transfer";
     QNetworkRequest request((site_url));
