@@ -4,4 +4,6 @@ api/.env
 
 Pankkiautomaatti/build
 
+Pankkiautomaatti/bankautomat
+
 bankautomat/*.user
