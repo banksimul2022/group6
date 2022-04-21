@@ -36,8 +36,9 @@ public slots:
 signals:
     void clientIDtoDrawMoney(QString);
     void accountIDtoDrawMoney(QString);
-    void logOutSignal();
     void accountIDtoTransfer(QString);
+    void balanceSig(QString);
+    void cardModeSignal(bool);
 
 
 private slots:
@@ -57,6 +58,10 @@ private slots:
 
     void on_btn_Siirto_clicked();
 
+    void on_btn_debit_clicked();
+
+    void on_btn_credit_clicked();
+
 private:
     Ui::MainWindow *ui;
     DLLRestApi *objRestApi;
@@ -66,8 +71,10 @@ private:
     QString actions;
     QString clientID;
     QString clientName;
+    bool credit = false;
     QTimer *timer;
     transfer *objTransfer;
+
 
     int browseActions = 0;
 

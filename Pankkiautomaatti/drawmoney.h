@@ -35,6 +35,7 @@ public slots:
     void startDrawMoneyTimer();
     void drawMoneyIdleSlot();
     void clearWarning();
+    void recvCardMode(bool);
 
 private slots:
     void on_btn_Draw20_clicked();
@@ -52,10 +53,6 @@ private slots:
     void on_btn_customAmount_clicked();
 
     void on_btn_Draw_clicked();
-
-    void on_btn_debit_clicked();
-
-    void on_btn_credit_clicked();
 
 private:
     Ui::DrawMoney *ui;

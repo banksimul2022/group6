@@ -172,7 +172,6 @@
 #define __DBL_HAS_DENORM__ 1
 #define __cdecl __attribute__((__cdecl__))
 #define __FLT32_MIN__ 1.17549435082228750796873653722224568e-38F32
-#define __UINT8_TYPE__ unsigned char
 #define __NO_INLINE__ 1
 #define __i386 1
 #define __FLT_MANT_DIG__ 24
@@ -256,6 +255,7 @@
 #define __stdcall __attribute__((__stdcall__))
 #define __FLT32_MIN_10_EXP__ (-37)
 #define __EXCEPTIONS 1
+#define __UINT8_TYPE__ unsigned char
 #define __LDBL_MANT_DIG__ 64
 #define __DBL_HAS_QUIET_NAN__ 1
 #define __FLT64_HAS_INFINITY__ 1

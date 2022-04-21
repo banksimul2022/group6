@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -34,6 +35,9 @@ public:
     QPushButton *btn_Siirto;
     QPushButton *btn_next10actions;
     QPushButton *btn_prev10actions;
+    QPushButton *btn_debit;
+    QPushButton *btn_credit;
+    QLabel *label_cardMode;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -89,6 +93,23 @@ public:
         btn_prev10actions->setEnabled(true);
         btn_prev10actions->setGeometry(QRect(380, 90, 150, 50));
         btn_prev10actions->setFont(font);
+        btn_debit = new QPushButton(centralwidget);
+        btn_debit->setObjectName(QString::fromUtf8("btn_debit"));
+        btn_debit->setGeometry(QRect(210, 30, 75, 51));
+        QFont font3;
+        font3.setPointSize(10);
+        font3.setBold(false);
+        btn_debit->setFont(font3);
+        btn_credit = new QPushButton(centralwidget);
+        btn_credit->setObjectName(QString::fromUtf8("btn_credit"));
+        btn_credit->setGeometry(QRect(300, 30, 75, 51));
+        btn_credit->setFont(font3);
+        label_cardMode = new QLabel(centralwidget);
+        label_cardMode->setObjectName(QString::fromUtf8("label_cardMode"));
+        label_cardMode->setGeometry(QRect(90, 40, 85, 30));
+        label_cardMode->setFont(font);
+        label_cardMode->setStyleSheet(QString::fromUtf8("color:rgb(85, 0, 255);\n"
+"background-color: rgb(255, 255, 255);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -114,6 +135,9 @@ public:
         btn_Siirto->setText(QCoreApplication::translate("MainWindow", "Transfer", nullptr));
         btn_next10actions->setText(QCoreApplication::translate("MainWindow", "next 10 actions", nullptr));
         btn_prev10actions->setText(QCoreApplication::translate("MainWindow", "prev 10 actions", nullptr));
+        btn_debit->setText(QCoreApplication::translate("MainWindow", "DEBIT", nullptr));
+        btn_credit->setText(QCoreApplication::translate("MainWindow", "CREDIT", nullptr));
+        label_cardMode->setText(QCoreApplication::translate("MainWindow", "     DEBIT", nullptr));
     } // retranslateUi
 
 };

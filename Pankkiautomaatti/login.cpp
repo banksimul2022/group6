@@ -6,25 +6,22 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
-    objRFID = new DLLRFIDtesti(this);
+    objRFID = new RFID;
     objRestApi = new DLLRestApi(this);
     objPincode = new DLLpincode(this);
     objMainWindow = new MainWindow;
+    objRFID->USB_Alustus();
     timer = new QTimer;
     timerWarning = new QTimer;
+    timerRFID = new QTimer;
 
-
-
-
-    connect(objRFID, SIGNAL(signalRFIDcard(QString)), //kortinnumero DLL->EXE
-            this, SLOT(receiveRFIDcard(QString)));
+    connect(timerRFID,SIGNAL(timeout()),this,SLOT(timerRFIDfunction()));
 
     connect(objPincode, SIGNAL(signalPincode(QString)), // PIN DLL->EXE
             this, SLOT(receivePincode(QString)));
 
-    connect(objRestApi, SIGNAL(loginSignal(QString)),
+    connect(objRestApi, SIGNAL(loginSignal(QString)), //login success / fail
             this, SLOT(receiveLogin(QString)));
-
 
     connect(objRestApi, SIGNAL(clientIDsignaltoExe(QString)),
             this, SLOT(receiveClientID(QString)));
@@ -32,21 +29,11 @@ login::login(QWidget *parent) :
     connect(this, SIGNAL(clientIDtoMainWindow(QString)),
             objMainWindow, SLOT(receiveCLientIDfromLogin(QString)));
 
-
-
     connect(objRestApi, SIGNAL(accountIDsignalToExe(QString)),
             this, SLOT(receiveAccountID(QString)));
 
     connect(this, SIGNAL(accountIDtoMainWindow(QString)),
             objMainWindow, SLOT(receiveAccountIDfromLogin(QString)));
-
-
-
-
-
-    connect(objMainWindow, SIGNAL(logOutSignal()),
-            this, SLOT(loggedOutSlot()));
-
 
     connect(this, SIGNAL(MainTimerSignal()),
             objMainWindow, SLOT(startMainTimer()));
@@ -75,18 +62,19 @@ login::login(QWidget *parent) :
      connect(this, SIGNAL(cardLockWarning()),
              objPincode, SLOT(exeCardLockWarning()));
 
+     timerRFID->start(1000);
 
-    objRFID->getRFIDcard();
-
+    /*
     if(cardnumber != "")
     {
         this->checkLogin();
     }
+
+    */
 }
 
 login::~login()
 {
-    qDebug() << "~login() tuhoaja exes" << cardnumber;
     delete ui;
 
     delete objRFID;
@@ -101,22 +89,16 @@ login::~login()
     delete objMainWindow;
     objMainWindow = nullptr;
 
-}
+    delete timer;
+    timer = nullptr;
 
-void login::checkLogin() //turha?
-{
-    qDebug() << "checkLogin() in EXE card" << cardnumber;
-
-    //objPincode->showPincodeUI();
-
-    //objPincode->getPincode();
-    //qDebug() << "checkLogin() in EXE pin" << pincode;
-    //objRestApi->login(cardnumber, pincode);
-
+    delete timerWarning;
+    timerWarning = nullptr;
 
 }
 
-void login::receiveRFIDcard(QString card) //kortinnumero DLL->EXE
+
+/*void login::receiveRFIDcard(QString card) //kortinnumero DLL->EXE
 {
     //cardnumber = card;
     cardnumber = "1111";
@@ -125,7 +107,7 @@ void login::receiveRFIDcard(QString card) //kortinnumero DLL->EXE
     objRestApi->getCardInfo(cardnumber);
     //this->close
 
-}
+}*/
 
 void login::receiveLogin(QString loginInfo) //timer napit -> pincode.dll
 {
@@ -135,14 +117,9 @@ void login::receiveLogin(QString loginInfo) //timer napit -> pincode.dll
 
     if(loginTries == 3 || cardLocked == '1')
     {  
-
         objRestApi->cardLock(cardnumber);
         emit cardLockWarning();
-        qDebug() << "CARD IS LOCKED";
-
-
     } else {
-        qDebug() << "login else == väärä pin";
         emit wrongPinSignal();
         loginTries++;
     }
@@ -151,22 +128,32 @@ void login::receiveLogin(QString loginInfo) //timer napit -> pincode.dll
     {
         delete objPincode;
         objPincode = nullptr;
-
         objMainWindow->show();
         objRestApi->clientIDfromCard(cardnumber);
         objRestApi->accountIDfromCard(cardnumber);
         emit MainTimerSignal();
         timer->stop();
-
         loginTries = 1;
     }
-
-
 }
 
 void login::cardLockInfo()
 {
     timerWarning->start(2000);
+}
+
+void login::timerRFIDfunction()
+{
+    objRFID->Luku();
+    if(objRFID->card==1){
+        qDebug() << "card=1";
+        timerRFID->stop();
+        cardnumber = objRFID->printLine;
+        objRestApi->getCardInfo(cardnumber);
+        objPincode->showPincodeUI();
+        objRFID->card=0;
+        this->close();
+    }
 }
 
 void login::receiveCardInfo(QString info)
@@ -198,13 +185,6 @@ void login::receiveAccountID(QString id)
     emit accountIDtoMainWindow(accountID);
 }
 
-void login::loggedOutSlot()
-{
-    qDebug() << "loggedOutSlot() in login";
-
-    this->show();
-}
-
 void login::resetTimer()
 {
     qDebug() << "resetTimer() in login";
@@ -217,7 +197,6 @@ void login::loginIdleSlot()
      qApp->quit();
      QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
-
 
 void login::on_btn_pinUI_clicked()
 {

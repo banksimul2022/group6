@@ -13,12 +13,14 @@ DrawMoneyCustom::DrawMoneyCustom(QWidget *parent) :
 
     connect(timer, SIGNAL(timeout()),
             this, SLOT(customIdleSlot()));
-
 }
 
 DrawMoneyCustom::~DrawMoneyCustom()
 {
     delete ui;
+
+    delete timer;
+    timer = nullptr;
 }
 
 void DrawMoneyCustom::startCustomTimer()

@@ -7,15 +7,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     objRestApi = new DLLRestApi;
-    objDrawMoney = new DrawMoney(); //new DrawMoney(parent);
+    objDrawMoney = new DrawMoney();
     objTransfer = new transfer;
+    timer = new QTimer;
 
     connect(objRestApi, SIGNAL(balanceSignal(QString)),
             this, SLOT(receiveBalance(QString)));
 
     connect(objRestApi, SIGNAL(nameToExe(QString)),
             this, SLOT(receiveClientName(QString)));
-
 
     connect(objRestApi, SIGNAL(actionSignal(QString)),
             this, SLOT(receiveActions(QString)));
@@ -29,11 +29,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, SIGNAL(accountIDtoDrawMoney(QString)),
             objDrawMoney, SLOT(receiveAccountIDinDrawMoney(QString)));
 
-
     connect(objDrawMoney, SIGNAL(updateBalanceMainWindow()),
             this, SLOT(updateBalanceSlot()));
 
-//transferReady
      connect(objTransfer, SIGNAL(updateMainBalance()),
             this, SLOT(updateBalanceSlot()));
 
@@ -43,13 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objRestApi, SIGNAL(browseActions(QString)),
             this, SLOT(receivePrev10(QString)));
 
-
-    //transfer  signal
     connect(this, SIGNAL(accountIDtoTransfer(QString)),
-            objTransfer, SLOT(receiveAccIDinTransfer(QString)));
-
-
-    timer = new QTimer;
+            objTransfer, SLOT(receiveAccIDinTransfer(QString))); 
 
     connect(ui->btn_drawMoney, SIGNAL(clicked()),
             objDrawMoney, SLOT(startDrawMoneyTimer()));
@@ -78,8 +71,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btn_Siirto, SIGNAL(clicked()),
             objTransfer, SLOT(startTransferTimer()));
 
-    connect(objTransfer, SIGNAL(mainTimerSig()), //käynnistää pääkäyttöliittymän ajastimen kun transfer sulkeutuu
+    connect(objTransfer, SIGNAL(mainTimerSig()), //käynnistää pääkäyttöliittymän ajastimen kun siirto sulkeutuu
             this, SLOT(startMainTimer()));
+
+    connect(this, SIGNAL(balanceSig(QString)),
+            objTransfer, SLOT(recvBalance(QString)));
+
+    //cardMode signals drawMoney & transfer
+    connect(this, SIGNAL(cardModeSignal(bool)),
+            objDrawMoney, SLOT(recvCardMode(bool)));
+
+    connect(this, SIGNAL(cardModeSignal(bool)),
+            objTransfer, SLOT(recvCardMode(bool)));
 
 
 }
@@ -91,12 +94,17 @@ MainWindow::~MainWindow()
     delete ui;
     objDrawMoney->close();
 
-
     delete objRestApi;
     objRestApi = nullptr;
 
     delete objDrawMoney;
     objDrawMoney = nullptr;
+
+    delete timer;
+    timer = nullptr;
+
+    delete objTransfer;
+    objTransfer = nullptr;
 }
 
 void MainWindow::receiveCLientIDfromLogin(QString id)
@@ -145,6 +153,8 @@ void MainWindow::receiveBalance(QString bal)
 {
     balance = bal;
     qDebug() << "receiveBalance() in EXE" << balance;
+
+    emit balanceSig(balance);
 }
 
 void MainWindow::receiveClientName(QString name)
@@ -235,8 +245,24 @@ void MainWindow::on_btn_next10actions_clicked()
 
 void MainWindow::on_btn_Siirto_clicked()
 {
+    objRestApi->getBalance(clientID);
     objTransfer->show();
     qDebug() << "emit acccountID from main:" << accountID;
     emit accountIDtoTransfer(accountID);
+}
+
+void MainWindow::on_btn_debit_clicked()
+{
+    credit = false;
+    ui->label_cardMode->setText("     DEBIT");
+    emit cardModeSignal(credit);
+}
+
+
+void MainWindow::on_btn_credit_clicked()
+{
+    credit = true;
+    ui->label_cardMode->setText("     CREDIT");
+    emit cardModeSignal(credit);
 }
 

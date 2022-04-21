@@ -2,6 +2,6 @@ api/node_modules
 
 api/.env
 
-bankautomat/build
+Pankkiautomaatti/build
 
 bankautomat/*.user

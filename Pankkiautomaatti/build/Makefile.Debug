@@ -1042,27 +1042,7 @@ debug/drawmoney.o: ../drawmoney.cpp ../drawmoney.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcborcommon.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qregularexpression.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/quuid.h \
-		ui_drawmoney.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QApplication \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcoreapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qeventloop.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qdesktopwidget.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qguiapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qinputmethod.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLabel \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlabel.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLineEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlineedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextcursor.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextformat.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qpen.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QPushButton \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qpushbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qicon.h
+		ui_drawmoney.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\drawmoney.o ..\drawmoney.cpp
 
 debug/drawmoneycustom.o: ../drawmoneycustom.cpp ../drawmoneycustom.h \
@@ -1174,28 +1154,7 @@ debug/drawmoneycustom.o: ../drawmoneycustom.cpp ../drawmoneycustom.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/QTimer \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qtimer.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
-		ui_drawmoneycustom.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/QVariant \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QApplication \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcoreapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qeventloop.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qdesktopwidget.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qguiapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qinputmethod.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLabel \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlabel.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLineEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlineedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextcursor.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextformat.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qpen.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QPushButton \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qpushbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qicon.h
+		ui_drawmoneycustom.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\drawmoneycustom.o ..\drawmoneycustom.cpp
 
 debug/login.o: ../login.cpp ../login.h \
@@ -1355,26 +1314,7 @@ debug/login.o: ../login.cpp ../login.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qtimer.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
 		../transfer.h \
-		ui_login.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QApplication \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcoreapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qeventloop.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qdesktopwidget.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qguiapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qinputmethod.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLabel \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlabel.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLineEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlineedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextcursor.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextformat.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qpen.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QPushButton \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qpushbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractbutton.h
+		ui_login.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\login.o ..\login.cpp
 
 debug/main.o: ../main.cpp ../mainwindow.h \
@@ -1694,36 +1634,7 @@ debug/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qtimer.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
 		../transfer.h \
-		ui_mainwindow.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QApplication \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcoreapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qeventloop.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qdesktopwidget.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qguiapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qinputmethod.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLineEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlineedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextcursor.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextformat.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qpen.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QMenuBar \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qmenubar.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qmenu.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qaction.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qactiongroup.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QPushButton \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qpushbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QStatusBar \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qstatusbar.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QTextEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qtextedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextdocument.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\mainwindow.cpp
 
 debug/transfer.o: ../transfer.cpp ../transfer.h \
@@ -1870,27 +1781,7 @@ debug/transfer.o: ../transfer.cpp ../transfer.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/QTimer \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qtimer.h \
 		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qbasictimer.h \
-		ui_transfer.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QApplication \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qcoreapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtCore/qeventloop.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qdesktopwidget.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qguiapplication.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qinputmethod.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLabel \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlabel.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qframe.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QLineEdit \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qlineedit.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextcursor.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextformat.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qpen.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qtextoption.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/QPushButton \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qpushbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtWidgets/qabstractbutton.h \
-		../../../QT_install/5.15.2/mingw81_32/include/QtGui/qicon.h
+		ui_transfer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\transfer.o ..\transfer.cpp
 
 debug/moc_drawmoney.o: debug/moc_drawmoney.cpp 

@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>661</width>
+    <height>425</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>661</width>
+    <height>425</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>661</width>
+    <height>425</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>ATM-MAIN</string>
@@ -17,7 +29,7 @@
    <widget class="QPushButton" name="btn_balance">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>90</y>
       <width>150</width>
       <height>50</height>
@@ -36,7 +48,7 @@
    <widget class="QPushButton" name="btn_drawMoney">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>150</y>
       <width>150</width>
       <height>50</height>
@@ -55,11 +67,17 @@
    <widget class="QTextEdit" name="le_actions">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>180</x>
       <y>150</y>
       <width>471</width>
-      <height>241</height>
+      <height>231</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>471</width>
+      <height>231</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -70,7 +88,7 @@
    <widget class="QLineEdit" name="le_balance">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>180</x>
       <y>90</y>
       <width>150</width>
       <height>50</height>
@@ -83,13 +101,13 @@
      </font>
     </property>
     <property name="text">
-     <string>  </string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_logOut">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>330</y>
       <width>150</width>
       <height>50</height>
@@ -108,7 +126,7 @@
    <widget class="QPushButton" name="btn_10actions">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>210</y>
       <width>150</width>
       <height>50</height>
@@ -127,7 +145,7 @@
    <widget class="QPushButton" name="btn_Siirto">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>10</x>
       <y>270</y>
       <width>150</width>
       <height>50</height>
@@ -146,7 +164,7 @@
    <widget class="QPushButton" name="btn_next10actions">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>500</x>
       <y>90</y>
       <width>150</width>
       <height>50</height>
@@ -168,7 +186,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>340</x>
       <y>90</y>
       <width>150</width>
       <height>50</height>
@@ -184,14 +202,75 @@
      <string>prev 10 actions</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_debit">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>DEBIT</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_credit">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>30</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>CREDIT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_cardMode">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>85</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(85, 0, 255);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>     DEBIT</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <width>661</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

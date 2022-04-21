@@ -49,12 +49,6 @@ DrawMoney::DrawMoney(QWidget *parent) :
     connect(ui->btn_Draw500, SIGNAL(clicked()),
             this, SLOT(startDrawMoneyTimer()));
 
-    connect(ui->btn_debit, SIGNAL(clicked()),
-            this, SLOT(startDrawMoneyTimer()));
-
-    connect(ui->btn_credit, SIGNAL(clicked()),
-            this, SLOT(startDrawMoneyTimer()));
-
     connect(timer, SIGNAL(timeout()),
             this, SLOT(drawMoneyIdleSlot()));
 
@@ -74,6 +68,15 @@ DrawMoney::~DrawMoney()
 
     delete objDrawCustom;
     objDrawCustom = nullptr;
+
+    delete objRestApi;
+    objRestApi = nullptr;
+
+    delete timer;
+    timer = nullptr;
+
+    delete timerWarning;
+    timerWarning = nullptr;
 }
 
 void DrawMoney::receiveCustomAmount(QString custom)
@@ -197,6 +200,7 @@ void DrawMoney::on_btn_Draw_clicked()
         {
             qDebug()<< "credit nosto"<< num1<<">"<<num2;
             objRestApi->withdrawal(accountID, clientID, drawAmount);
+            this->close();
         }
         else {            
             ui->label_warning->setText("Account balance too low\n" "Balance: "+balance+"€\n"+"Draw Amount: "+drawAmount+"€");
@@ -205,6 +209,7 @@ void DrawMoney::on_btn_Draw_clicked()
     }
     else {
         objRestApi->withdrawal(accountID, clientID, drawAmount); //id_bank_account, id_client, drawAmount
+        ui->label_warning->setText("");
         this->close();
     }
 }
@@ -214,16 +219,16 @@ void DrawMoney::clearWarning()
     ui->label_warning->setText("");
 }
 
-
-
-void DrawMoney::on_btn_debit_clicked()
+void DrawMoney::recvCardMode(bool mode)
 {
-    credit = false;
-}
-
-
-void DrawMoney::on_btn_credit_clicked()
-{
-    credit = true;
+    credit = mode;
+    qDebug()<< "recvCardMode in drawmoney"<< mode;
+    if(credit == true)
+    {
+        ui->label_cardMode->setText("     CREDIT");
+    }
+    else{
+        ui->label_cardMode->setText("     DEBIT");
+    }
 }
 

@@ -2,7 +2,7 @@
 #define LOGIN_H
 
 #include <QDialog>
-#include "dllrfidtesti.h"
+#include "rfid.h"
 #include "dllrestapi.h"
 #include "dllpincode.h"
 #include "mainwindow.h"
@@ -21,19 +21,19 @@ class login : public QDialog
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
-    void checkLogin();
+
 
 public slots:
-    void receiveRFIDcard(QString);
+    //void receiveRFIDcard(QString);
     void receiveLogin(QString);
     void receivePincode(QString);
     void receiveClientID(QString);
     void receiveAccountID(QString);
-    void loggedOutSlot();
     void resetTimer();
     void loginIdleSlot();
     void receiveCardInfo(QString);
     void cardLockInfo();
+    void timerRFIDfunction();
 
 signals:
     void clientIDtoMainWindow(QString);
@@ -48,7 +48,7 @@ private slots:
 
 private:
     Ui::login *ui;
-    DLLRFIDtesti *objRFID;
+    RFID *objRFID;
     DLLRestApi *objRestApi;
     DLLpincode *objPincode;
     QString cardnumber;
@@ -57,9 +57,8 @@ private:
     QString accountID;
     QTimer *timer;
     QTimer *timerWarning;
+    QTimer *timerRFID;
     QString cardLocked;
-
-
     short loginTries = 1;
     MainWindow *objMainWindow;
 

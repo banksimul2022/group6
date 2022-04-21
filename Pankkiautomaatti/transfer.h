@@ -27,6 +27,9 @@ public slots:
     void receiveTransferReady();
     void startTransferTimer();
     void transferIdleSlot();
+    void recvBalance(QString);
+    void clearWarning();
+    void recvCardMode(bool);
 
 private slots:
     void on_btn_transfer_clicked();
@@ -36,8 +39,11 @@ private:
     DLLRestApi *objRestApi;
     QString transferAmount;
     QString accID;
-    QString receiverAccID;
+    QString recvAccNumber;
+    bool credit = false;
     QTimer *timer;
+    QTimer *timerWarning;
+    QString balance;
 };
 
 #endif // TRANSFER_H

@@ -30,9 +30,8 @@ public:
     QPushButton *btn_customAmount;
     QPushButton *btn_Draw;
     QLineEdit *le_drawBalance;
-    QPushButton *btn_debit;
-    QPushButton *btn_credit;
     QLabel *label_warning;
+    QLabel *label_cardMode;
 
     void setupUi(QDialog *DrawMoney)
     {
@@ -44,7 +43,7 @@ public:
         btn_Draw20->setGeometry(QRect(51, 150, 81, 51));
         QFont font;
         font.setPointSize(10);
-        font.setBold(true);
+        font.setBold(false);
         btn_Draw20->setFont(font);
         btn_Draw40 = new QPushButton(DrawMoney);
         btn_Draw40->setObjectName(QString::fromUtf8("btn_Draw40"));
@@ -77,22 +76,24 @@ public:
         le_drawBalance = new QLineEdit(DrawMoney);
         le_drawBalance->setObjectName(QString::fromUtf8("le_drawBalance"));
         le_drawBalance->setGeometry(QRect(140, 90, 171, 50));
-        le_drawBalance->setFont(font);
-        btn_debit = new QPushButton(DrawMoney);
-        btn_debit->setObjectName(QString::fromUtf8("btn_debit"));
-        btn_debit->setGeometry(QRect(150, 30, 81, 51));
-        btn_debit->setFont(font);
-        btn_credit = new QPushButton(DrawMoney);
-        btn_credit->setObjectName(QString::fromUtf8("btn_credit"));
-        btn_credit->setGeometry(QRect(230, 30, 81, 51));
-        btn_credit->setFont(font);
+        QFont font1;
+        font1.setPointSize(10);
+        font1.setBold(true);
+        le_drawBalance->setFont(font1);
         label_warning = new QLabel(DrawMoney);
         label_warning->setObjectName(QString::fromUtf8("label_warning"));
         label_warning->setGeometry(QRect(50, 325, 371, 71));
-        QFont font1;
-        font1.setPointSize(12);
-        font1.setBold(true);
-        label_warning->setFont(font1);
+        QFont font2;
+        font2.setPointSize(12);
+        font2.setBold(true);
+        label_warning->setFont(font2);
+        label_warning->setStyleSheet(QString::fromUtf8("color:rgb(255, 0, 0)"));
+        label_cardMode = new QLabel(DrawMoney);
+        label_cardMode->setObjectName(QString::fromUtf8("label_cardMode"));
+        label_cardMode->setGeometry(QRect(50, 40, 81, 31));
+        label_cardMode->setFont(font1);
+        label_cardMode->setStyleSheet(QString::fromUtf8("color:rgb(85, 0, 255);\n"
+"background-color: rgb(255, 255, 255);"));
 
         retranslateUi(DrawMoney);
 
@@ -110,9 +111,8 @@ public:
         btn_Draw500->setText(QCoreApplication::translate("DrawMoney", "500", nullptr));
         btn_customAmount->setText(QCoreApplication::translate("DrawMoney", "Select custom amount", nullptr));
         btn_Draw->setText(QCoreApplication::translate("DrawMoney", "Draw", nullptr));
-        btn_debit->setText(QCoreApplication::translate("DrawMoney", "DEBIT", nullptr));
-        btn_credit->setText(QCoreApplication::translate("DrawMoney", "CREDIT", nullptr));
         label_warning->setText(QString());
+        label_cardMode->setText(QCoreApplication::translate("DrawMoney", "    DEBIT", nullptr));
     } // retranslateUi
 
 };
