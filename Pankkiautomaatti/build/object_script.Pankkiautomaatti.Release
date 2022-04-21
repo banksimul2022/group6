@@ -1,0 +1,11 @@
+release/drawmoney.o
+release/drawmoneycustom.o
+release/login.o
+release/main.o
+release/mainwindow.o
+release/transfer.o
+release/moc_drawmoney.o
+release/moc_drawmoneycustom.o
+release/moc_login.o
+release/moc_mainwindow.o
+release/moc_transfer.o
