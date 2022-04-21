@@ -12,7 +12,6 @@ public:
     void USB_Alustus();
     void Print();
     QSerialPort *ObjectSerialPort;
-    void show();
     QString printLine;
     int card=0;
     QString returnCardNumber();

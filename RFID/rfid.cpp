@@ -2,7 +2,6 @@
 #include <QSerialPort>
 #include <QDebug>
 #include <QTimer>
-#include "rfid_ui.h"
 RFID::RFID()
 {
     qDebug("RFID main");
@@ -41,14 +40,6 @@ void RFID::Print()
     cardnumber = ObjectSerialPort->readLine();
     qDebug() << cardnumber;
     //emit signalRFIDcard(cardnumber);
-}
-
-void RFID::show()
-{
-  rfid_ui *w;
-  w= new rfid_ui;
-  w->show();
-  //this->show();
 }
 
 QString RFID::returnCardNumber()
