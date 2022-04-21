@@ -1,0 +1,11 @@
+debug/drawmoney.o
+debug/drawmoneycustom.o
+debug/login.o
+debug/main.o
+debug/mainwindow.o
+debug/transfer.o
+debug/moc_drawmoney.o
+debug/moc_drawmoneycustom.o
+debug/moc_login.o
+debug/moc_mainwindow.o
+debug/moc_transfer.o
