@@ -5,3 +5,7 @@ api/.env
 bankautomat/build
 
 bankautomat/*.user
+
+DLLRestApi/*.user
+
+DLLRestApi/build
