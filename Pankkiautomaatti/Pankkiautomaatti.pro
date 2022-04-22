@@ -47,8 +47,8 @@ DEPENDPATH += $$PWD/../DLLRestApi
 
 win32: LIBS += -L$$PWD/../RFID/build/debug/ -lRFID
 
-INCLUDEPATH += $$PWD/RFID
-DEPENDPATH += $$PWD/RFID
+INCLUDEPATH += $$PWD/../RFID
+DEPENDPATH += $$PWD/../RFID
 
 win32: LIBS += -L$$PWD/../DLL-pincode/build/debug/ -lDLL-pincode
 
