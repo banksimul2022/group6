@@ -2,9 +2,17 @@ api/node_modules
 
 api/.env
 
-bankautomat/build
+DLL-pincode/build
 
-bankautomat/*.user
+DLL-pincode/*.user
+
+RFID/build
+
+RFID/*.user
+
+Pankkiautomaatti/build
+
+Pankkiautomaatti/*.user
 
 DLLRestApi/*.user
 
