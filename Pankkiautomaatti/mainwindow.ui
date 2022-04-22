@@ -244,9 +244,9 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>40</y>
-      <width>85</width>
-      <height>30</height>
+      <y>30</y>
+      <width>81</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -261,6 +261,19 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>     DEBIT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mainmenulogo">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>231</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
