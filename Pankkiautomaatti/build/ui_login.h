@@ -13,8 +13,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -22,28 +20,26 @@ class Ui_login
 {
 public:
     QLabel *label;
-    QLineEdit *le_RFID;
-    QPushButton *btn_pinUI;
+    QLabel *logo;
 
     void setupUi(QDialog *login)
     {
         if (login->objectName().isEmpty())
             login->setObjectName(QString::fromUtf8("login"));
-        login->resize(400, 300);
+        login->resize(431, 212);
+        login->setMinimumSize(QSize(431, 212));
+        login->setMaximumSize(QSize(431, 212));
         label = new QLabel(login);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(70, 70, 251, 121));
+        label->setGeometry(QRect(100, 110, 241, 121));
         QFont font;
         font.setPointSize(18);
         font.setBold(true);
         font.setItalic(false);
         label->setFont(font);
-        le_RFID = new QLineEdit(login);
-        le_RFID->setObjectName(QString::fromUtf8("le_RFID"));
-        le_RFID->setGeometry(QRect(110, 190, 113, 22));
-        btn_pinUI = new QPushButton(login);
-        btn_pinUI->setObjectName(QString::fromUtf8("btn_pinUI"));
-        btn_pinUI->setGeometry(QRect(130, 240, 75, 24));
+        logo = new QLabel(login);
+        logo->setObjectName(QString::fromUtf8("logo"));
+        logo->setGeometry(QRect(50, 20, 331, 121));
 
         retranslateUi(login);
 
@@ -54,7 +50,7 @@ public:
     {
         login->setWindowTitle(QCoreApplication::translate("login", "ATM-LOGIN", nullptr));
         label->setText(QCoreApplication::translate("login", "Sy\303\266t\303\244 kortti lukijaan", nullptr));
-        btn_pinUI->setText(QCoreApplication::translate("login", "PIN UI", nullptr));
+        logo->setText(QString());
     } // retranslateUi
 
 };

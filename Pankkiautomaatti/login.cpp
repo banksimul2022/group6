@@ -5,7 +5,11 @@ login::login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::login)
 {
+    QString applicationPath = QDir::currentPath();
+    qDebug() << applicationPath;
     ui->setupUi(this);
+    QPixmap pix(applicationPath + "/../massikeisarilogo.png");
+    ui->logo->setPixmap(pix);
     objRFID = new RFID;
     objRestApi = new DLLRestApi(this);
     objPincode = new DLLpincode(this);

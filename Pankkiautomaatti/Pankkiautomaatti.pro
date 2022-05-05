@@ -40,17 +40,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 
 
-win32: LIBS += -L$$PWD/DLLRestApi/build/debug/ -lDLLRestApi
+win32: LIBS += -L$$PWD/../DLLRestApi/build/debug/ -lDLLRestApi
 
-INCLUDEPATH += $$PWD/DLLRestApi
-DEPENDPATH += $$PWD/DLLRestApi
+INCLUDEPATH += $$PWD/../DLLRestApi
+DEPENDPATH += $$PWD/../DLLRestApi
 
-win32: LIBS += -L$$PWD/../build-RFID-Desktop_Qt_5_15_2_MinGW_32_bit-Debug/debug/ -lRFID
+win32: LIBS += -L$$PWD/../RFID/build/debug/ -lRFID
 
-INCLUDEPATH += $$PWD/RFID
-DEPENDPATH += $$PWD/RFID
+INCLUDEPATH += $$PWD/../RFID
+DEPENDPATH += $$PWD/../RFID
 
-win32: LIBS += -L$$PWD/DLL-pincode/build/debug/ -lDLL-pincode
+win32: LIBS += -L$$PWD/../DLL-pincode/build/debug/ -lDLL-pincode
 
-INCLUDEPATH += $$PWD/DLL-pincode
-DEPENDPATH += $$PWD/DLL-pincode
+INCLUDEPATH += $$PWD/../DLL-pincode
+DEPENDPATH += $$PWD/../DLL-pincode

@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QString applicationPath = QDir::currentPath();
+    QPixmap pix(applicationPath + "/../massikeisarilogo.png");
+    ui->mainmenulogo->setScaledContents(true);
+    ui->mainmenulogo->setPixmap(pix);
     objRestApi = new DLLRestApi;
     objDrawMoney = new DrawMoney();
     objTransfer = new transfer;
